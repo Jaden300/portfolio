@@ -5,63 +5,52 @@ export default function Navbar() {
   const navigate = useNavigate()
   const { pathname } = useLocation()
   const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
+    const fn = () => setScrolled(window.scrollY > 60)
+    window.addEventListener("scroll", fn, { passive: true })
+    return () => window.removeEventListener("scroll", fn)
   }, [])
 
-  const links = [
-    ["Home",    "/"],
-    ["About",   "/about"],
-    ["Work",    "/work"],
-    ["Contact", "/contact"],
-  ]
+  const links = [["Home","/"],["About","/about"],["Work","/work"],["Contact","/contact"]]
 
   return (
     <nav style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-      padding: "0 40px", height: 60,
+      height: 60, padding: "0 48px",
       display: "flex", alignItems: "center", justifyContent: "space-between",
-      background: scrolled ? "rgba(5,0,8,0.92)" : "transparent",
+      background: scrolled ? "rgba(250,249,246,0.92)" : "transparent",
       backdropFilter: scrolled ? "blur(20px)" : "none",
       borderBottom: scrolled ? "1px solid var(--border)" : "none",
-      transition: "all 0.3s ease"
+      transition: "all 0.4s ease"
     }}>
-      {/* Logo */}
-      <div onClick={() => navigate("/")} style={{ cursor: "pointer", display: "flex", alignItems: "center", gap: 10 }}>
-        <div style={{
-          width: 28, height: 28, borderRadius: "50%",
-          background: "linear-gradient(135deg, #F59E0B, #FF375F)",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          fontSize: 12, fontWeight: 800, color: "#fff"
-        }}>J</div>
+      {/* Wordmark */}
+      <div onClick={() => navigate("/")} style={{ cursor: "none", display: "flex", alignItems: "center", gap: 10 }}>
+        <svg width="22" height="22" viewBox="0 0 22 22">
+          <circle cx="11" cy="11" r="10" fill="none" stroke="var(--gold)" strokeWidth="1.5"/>
+          <text x="11" y="15.5" textAnchor="middle" fill="var(--gold)" fontSize="11" fontWeight="700" fontFamily="Georgia">J</text>
+        </svg>
         <span style={{ fontSize: 15, fontWeight: 600, color: "var(--text)", letterSpacing: "-0.3px" }}>Jaden Wong</span>
       </div>
 
       {/* Links */}
-      <div style={{ display: "flex", alignItems: "center", gap: 32 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 36 }}>
         {links.map(([label, path]) => (
-          <span key={path} onClick={() => navigate(path)} style={{
-            fontSize: 13, fontWeight: 400, cursor: "pointer",
-            color: pathname === path ? "#F59E0B" : "var(--text-secondary)",
-            letterSpacing: "0.02em", transition: "color 0.15s"
-          }}
-            onMouseEnter={e => { if (pathname !== path) e.currentTarget.style.color = "var(--text)" }}
-            onMouseLeave={e => { if (pathname !== path) e.currentTarget.style.color = "var(--text-secondary)" }}
-          >{label}</span>
+          <span key={path} onClick={() => navigate(path)} className="ink-line" style={{
+            fontSize: 13, cursor: "none", fontWeight: 400,
+            color: pathname === path ? "var(--gold)" : "var(--text-secondary)",
+            letterSpacing: "0.02em", transition: "color 0.2s"
+          }}>{label}</span>
         ))}
         <a href="https://github.com/Jaden300" target="_blank" rel="noreferrer" style={{
-          background: "linear-gradient(135deg, #F59E0B, #92400e)",
-          color: "#0a0000", borderRadius: 100, padding: "7px 18px",
-          fontSize: 13, fontWeight: 600, letterSpacing: "0.02em",
-          transition: "transform 0.15s, box-shadow 0.15s",
-          boxShadow: "0 4px 16px rgba(245,158,11,0.3)"
+          background: "var(--text)", color: "var(--bg)",
+          borderRadius: 100, padding: "8px 20px",
+          fontSize: 13, fontWeight: 500, letterSpacing: "0.02em",
+          transition: "background 0.2s, transform 0.2s", cursor: "none",
+          display: "inline-block"
         }}
-          onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.05)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(245,158,11,0.5)" }}
-          onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.boxShadow = "0 4px 16px rgba(245,158,11,0.3)" }}
+          onMouseEnter={e => { e.currentTarget.style.background = "var(--gold)"; e.currentTarget.style.transform = "scale(1.04)" }}
+          onMouseLeave={e => { e.currentTarget.style.background = "var(--text)"; e.currentTarget.style.transform = "scale(1)" }}
         >GitHub ↗</a>
       </div>
     </nav>

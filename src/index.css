@@ -1,22 +1,26 @@
 :root {
   --font: -apple-system, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
   --serif: "Georgia", "Times New Roman", serif;
-  --gold: #F59E0B;
-  --gold-light: #FDE68A;
-  --gold-dark: #92400e;
-  --accent: #FF375F;
-  --bg: #050008;
-  --bg-2: #0d0012;
-  --bg-3: #120018;
-  --text: #F5F5F7;
-  --text-secondary: rgba(255,255,255,0.55);
-  --text-tertiary: rgba(255,255,255,0.25);
-  --border: rgba(255,255,255,0.07);
-  --border-gold: rgba(245,158,11,0.2);
+  --gold: #C9922A;
+  --gold-light: #E8B84B;
+  --gold-soft: rgba(201,146,42,0.1);
+  --accent: #C9922A;
+  --bg: #FAF9F6;
+  --bg-2: #F4F3EF;
+  --bg-dark: #0F0E0B;
+  --text: #111110;
+  --text-secondary: #5A5853;
+  --text-tertiary: #9A9792;
+  --border: rgba(0,0,0,0.08);
+  --border-dark: rgba(0,0,0,0.15);
   --radius: 16px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.06);
+  --shadow-lg: 0 16px 64px rgba(0,0,0,0.12);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font);
@@ -24,34 +28,84 @@ body {
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  cursor: none;
 }
-
-::selection { background: rgba(245,158,11,0.25); }
 
 a { text-decoration: none; color: inherit; }
 
-@keyframes fadeUp    { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
-@keyframes fadeIn    { from{opacity:0} to{opacity:1} }
-@keyframes orbFloat  { from{transform:translateY(0) scale(1)} to{transform:translateY(-40px) scale(1.08)} }
-@keyframes pulse     { 0%,100%{opacity:1} 50%{opacity:0.3} }
-@keyframes goldShimmer { 0%{background-position:200% center} 100%{background-position:-200% center} }
-@keyframes rotate    { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
-@keyframes slideIn   { from{opacity:0;transform:translateX(-16px)} to{opacity:1;transform:translateX(0)} }
+::selection { background: rgba(201,146,42,0.2); }
 
-.gold {
-  background: linear-gradient(135deg, #F59E0B 0%, #FDE68A 40%, #F59E0B 60%, #92400e 100%);
-  background-size: 300% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: goldShimmer 5s linear infinite;
+/* ── Cursor */
+#cursor {
+  position: fixed; top: 0; left: 0; z-index: 9999;
+  width: 10px; height: 10px;
+  background: var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%,-50%);
+  transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease;
+  mix-blend-mode: multiply;
+}
+#cursor-ring {
+  position: fixed; top: 0; left: 0; z-index: 9998;
+  width: 36px; height: 36px;
+  border: 1.5px solid var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%,-50%);
+  transition: transform 0.18s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+  opacity: 0.5;
+}
+body:hover #cursor { opacity: 1; }
+
+/* ── Keyframes */
+@keyframes fadeUp    { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn    { from{opacity:0} to{opacity:1} }
+@keyframes slideInL  { from{opacity:0;transform:translateX(-24px)} to{opacity:1;transform:translateX(0)} }
+@keyframes scaleIn   { from{opacity:0;transform:scale(0.95)} to{opacity:1;transform:scale(1)} }
+@keyframes lineGrow  { from{width:0} to{width:100%} }
+@keyframes float     { from{transform:translateY(0)} to{transform:translateY(-16px)} }
+@keyframes spin      { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+@keyframes pulse     { 0%,100%{opacity:1} 50%{opacity:0.4} }
+@keyframes marquee   { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .hover-lift {
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  cursor: none;
 }
 .hover-lift:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(245,158,11,0.12);
-  border-color: rgba(245,158,11,0.3) !important;
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
 }
+
+.gold-text {
+  background: linear-gradient(135deg, #C9922A 0%, #E8B84B 50%, #C9922A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ink-line {
+  display: inline-block;
+  position: relative;
+}
+.ink-line::after {
+  content: "";
+  position: absolute;
+  bottom: -2px; left: 0;
+  height: 2px;
+  background: var(--gold);
+  width: 0;
+  transition: width 0.4s ease;
+}
+.ink-line:hover::after { width: 100%; }
