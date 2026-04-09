@@ -148,6 +148,84 @@ export default function Work() {
           ))}
         </div>
       </section>
+
+    {/* Publications & Writing */}
+    <section style={{ padding:"0 48px 100px", borderTop:"1px solid var(--border)" }}>
+      <div style={{ maxWidth:1000, margin:"0 auto", paddingTop:64 }}>
+        <Reveal>
+          <div style={{ fontSize:10, color:"var(--gold)", textTransform:"uppercase", letterSpacing:"0.25em", marginBottom:16, fontFamily:"var(--serif)" }}>Publications & Writing</div>
+          <h2 style={{ fontSize:"clamp(28px,4vw,44px)", fontWeight:700, color:"var(--text)", letterSpacing:"-1.5px", marginBottom:12, fontFamily:"var(--serif)" }}>Research & articles.</h2>
+          <p style={{ fontSize:16, color:"var(--text-secondary)", fontWeight:300, lineHeight:1.7, maxWidth:560, marginBottom:48 }}>
+            Technical writing published on myojam.com — spanning neuroscience, signal processing, machine learning, and the ethics of biometric interfaces.
+          </p>
+        </Reveal>
+
+        {/* Research paper */}
+        <Reveal delay={0.05}>
+          <a href="https://myojam.com/research" target="_blank" rel="noreferrer" className="hover-lift" style={{ display:"block", background:"var(--bg-dark)", borderRadius:20, overflow:"hidden", marginBottom:16, cursor:"pointer" }}>
+            <div style={{ padding:"36px 40px", display:"grid", gridTemplateColumns:"1fr auto", gap:32, alignItems:"center" }}>
+              <div>
+                <div style={{ display:"flex", gap:8, marginBottom:14 }}>
+                  <span style={{ fontSize:11, fontWeight:600, color:"var(--gold-light)", background:"rgba(245,158,11,0.12)", border:"1px solid rgba(245,158,11,0.25)", borderRadius:100, padding:"3px 12px" }}>Technical Report</span>
+                  <span style={{ fontSize:11, color:"rgba(255,255,255,0.3)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:100, padding:"3px 12px", fontWeight:300 }}>April 2026</span>
+                  <span style={{ fontSize:11, color:"#10B981", background:"rgba(16,185,129,0.1)", border:"1px solid rgba(16,185,129,0.2)", borderRadius:100, padding:"3px 12px", fontWeight:500 }}>Open Access</span>
+                </div>
+                <h3 style={{ fontSize:20, fontWeight:700, color:"white", letterSpacing:"-0.4px", fontFamily:"var(--serif)", marginBottom:10, lineHeight:1.3 }}>
+                  myojam: Open-Source Surface EMG Gesture Classification for Assistive Human-Computer Interaction
+                </h3>
+                <p style={{ fontSize:14, color:"rgba(255,255,255,0.45)", fontWeight:300, lineHeight:1.75, maxWidth:560, marginBottom:16 }}>
+                  Full technical report on the myojam classification pipeline — methodology, cross-subject evaluation protocol, confusion matrix analysis, and system integration. Includes interactive figures and BibTeX citation.
+                </p>
+                <div style={{ fontSize:13, color:"rgba(255,255,255,0.3)", fontWeight:300, fontFamily:"var(--serif)", fontStyle:"italic" }}>
+                  Wong, J. (2026). myojam Technical Report. myojam Project.
+                </div>
+              </div>
+              <span style={{ fontSize:24, color:"var(--gold-light)", flexShrink:0 }}>↗</span>
+            </div>
+          </a>
+        </Reveal>
+
+        {/* Articles grid */}
+        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12 }}>
+          {[
+            { title:"The science of muscle-computer interfaces",       tag:"Foundations",      url:"https://myojam.com/education/emg-explainer",       date:"April 2026" },
+            { title:"Why Random Forest? The classifier behind myojam", tag:"Machine Learning", url:"https://myojam.com/education/random-forest-emg",    date:"March 2026" },
+            { title:"From lab to laptop: democratising EMG",           tag:"Accessibility",    url:"https://myojam.com/education/open-source-emg",     date:"March 2026" },
+            { title:"Inside Ninapro DB5: the dataset that trains myojam", tag:"Dataset",      url:"https://myojam.com/education/ninapro-db5",         date:"Feb 2026" },
+            { title:"Muscle memory is real — it's just not in your muscles", tag:"Neuroscience", url:"https://myojam.com/education/muscle-memory",    date:"Jan 2026" },
+            { title:"Why EMG is harder than it looks",                 tag:"Signal Processing",url:"https://myojam.com/education/why-emg-is-hard",     date:"Nov 2025" },
+            { title:"Build your own EMG sensor for under $60",         tag:"Hardware",         url:"https://myojam.com/education/build-your-own",      date:"Oct 2025" },
+            { title:"Who owns your muscle data? Ethics of EMG",        tag:"Ethics",           url:"https://myojam.com/education/ethics-of-emg",       date:"Aug 2025" },
+            { title:"The art of cutting a signal into pieces",         tag:"Signal Processing",url:"https://myojam.com/education/windowing-explained",  date:"Jul 2025" },
+            { title:"The ghost in the electrode: phantom limb EMG",    tag:"Neuroscience",     url:"https://myojam.com/education/phantom-limb",        date:"Dec 2025" },
+            { title:"After EMG: what comes next",                      tag:"Future",           url:"https://myojam.com/education/future-of-bci",       date:"Sept 2025" },
+          ].map((article, i) => (
+            <Reveal key={article.title} delay={i * 0.04}>
+              <a href={article.url} target="_blank" rel="noreferrer" className="hover-lift" style={{ display:"block", background:"var(--bg-2)", border:"1px solid var(--border)", borderRadius:14, padding:"20px 24px", cursor:"pointer", height:"100%" }}>
+                <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", gap:12 }}>
+                  <div style={{ flex:1 }}>
+                    <div style={{ display:"flex", gap:8, marginBottom:10, flexWrap:"wrap" }}>
+                      <span style={{ fontSize:10, fontWeight:600, color:"var(--gold)", background:"var(--gold-soft)", border:"1px solid rgba(201,146,42,0.2)", borderRadius:100, padding:"2px 10px", textTransform:"uppercase", letterSpacing:"0.06em" }}>{article.tag}</span>
+                      <span style={{ fontSize:10, color:"var(--text-tertiary)", fontWeight:300 }}>{article.date}</span>
+                    </div>
+                    <div style={{ fontSize:14, fontWeight:600, color:"var(--text)", lineHeight:1.4 }}>{article.title}</div>
+                  </div>
+                  <span style={{ fontSize:14, color:"var(--text-tertiary)", flexShrink:0, marginTop:2 }}>↗</span>
+                </div>
+              </a>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal delay={0.2}>
+          <div style={{ marginTop:24, textAlign:"center" }}>
+            <a href="https://myojam.com/education" target="_blank" rel="noreferrer" style={{ fontSize:14, color:"var(--gold)", fontWeight:500, borderBottom:"1px solid var(--gold)", paddingBottom:2 }}>
+              View all 11 articles on myojam.com →
+            </a>
+          </div>
+        </Reveal>
+      </div>
+    </section>
     </div>
   )
 }
