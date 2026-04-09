@@ -89,10 +89,10 @@ export default function Contact() {
                   <span style={{ fontSize:13, color:"rgba(255,255,255,0.5)", fontWeight:300, textTransform:"uppercase", letterSpacing:"0.1em" }}>Available</span>
                 </div>
                 <h3 style={{ fontSize:22, fontWeight:700, color:"white", letterSpacing:"-0.5px", marginBottom:16, fontFamily:"var(--serif)" }}>
-                  Open to summer 2026 internships.
+                  Open to work.
                 </h3>
                 <p style={{ fontSize:14, color:"rgba(255,255,255,0.45)", lineHeight:1.8, fontWeight:300, marginBottom:24 }}>
-                  Particularly interested in ML research, biomedical engineering, and full-stack development. Based in Toronto — remote or hybrid preferred. Available from May 2026.
+                  Looking for internship opportunities in ML research, biomedical engineering, and full-stack development. Based in Toronto — remote or hybrid. Let's build something that matters.
                 </p>
                 <div style={{ display:"flex", flexWrap:"wrap", gap:8 }}>
                   {["ML Research","Biomedical Engineering","Full-Stack Dev","Assistive Technology"].map(tag=>(

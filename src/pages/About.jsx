@@ -61,6 +61,10 @@ export default function About() {
               <p style={{ fontSize:17, color:"var(--text-secondary)", fontWeight:300, lineHeight:1.85 }}>
                 My work focuses on assistive technology — systems that expand human capability rather than replace it. Everything I build is open source and thoroughly documented.
               </p>
+
+              <p style={{ fontSize:17, color:"var(--text-secondary)", fontWeight:300, lineHeight:1.85 }}>
+                Alongside the engineering work, I write. Eleven articles on myojam.com cover the full spectrum — from the neuroscience of motor learning to the ethics of biometric data, from hardware build guides to the future of brain-computer interfaces. I also authored a technical report on myojam's methodology, openly published and citable.
+              </p>
             </div>
             <div>
               <div style={{ background:"var(--bg)", border:"1px solid var(--border)", borderRadius:"var(--radius)", padding:"32px" }}>

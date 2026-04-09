@@ -111,8 +111,8 @@ export default function Home() {
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center" }}>
             <p style={{ fontSize: "clamp(15px,2vw,18px)", color: "var(--text-secondary)", fontWeight: 300, lineHeight: 1.85, opacity: loaded ? 1 : 0, transition: "opacity 0.8s 0.5s ease" }}>
-              I build at the intersection of machine learning, biomedical signal processing, and human-computer interaction. My flagship project, <strong style={{ fontWeight: 600, color: "var(--text)" }}>myojam</strong>, classifies hand gestures from EMG signals at 84.85% cross-subject accuracy.
-            </p>
+                I build at the intersection of machine learning, biomedical signal processing, and human-computer interaction. My flagship project, <strong style={{ fontWeight: 600, color: "var(--text)" }}>myojam</strong>, classifies hand gestures from EMG signals at 84.85% cross-subject accuracy — and has become a full research and education platform with 11 published articles, lesson plans, and interactive demos.
+              </p>
 
             <div style={{ display: "flex", flexDirection: "column", gap: 12, opacity: loaded ? 1 : 0, transition: "opacity 0.8s 0.6s ease" }}>
               <button onClick={() => navigate("/work")} style={{
@@ -178,6 +178,41 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── RESEARCH HIGHLIGHT */}
+      <section style={{ padding: "64px 48px", background: "var(--bg-dark)", borderTop: "1px solid rgba(255,255,255,0.06)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+          <Reveal>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center" }}>
+              <div>
+                <div style={{ fontSize: 10, color: "rgba(245,158,11,0.6)", textTransform: "uppercase", letterSpacing: "0.25em", marginBottom: 16, fontFamily: "var(--serif)" }}>Research & writing</div>
+                <h2 style={{ fontSize: "clamp(24px,3.5vw,38px)", fontWeight: 700, color: "white", letterSpacing: "-1.5px", fontFamily: "var(--serif)", marginBottom: 16 }}>
+                  1 technical report.<br />11 published articles.
+                </h2>
+                <p style={{ fontSize: 15, color: "rgba(255,255,255,0.45)", fontWeight: 300, lineHeight: 1.8, marginBottom: 28 }}>
+                  A peer-readable technical report on myojam's methodology and eleven articles spanning neuroscience, signal processing, machine learning, hardware, and the ethics of biometric interfaces — all openly published on myojam.com.
+                </p>
+                <button onClick={() => window.location.href = "/research"} style={{ background: "linear-gradient(135deg, #C9922A, #E8B84B)", color: "#0a0000", border: "none", borderRadius: 100, padding: "12px 28px", fontSize: 14, fontWeight: 700, cursor: "pointer", transition: "transform 0.2s" }}
+                  onMouseEnter={e => e.currentTarget.style.transform = "scale(1.05)"}
+                  onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
+                >View all research →</button>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                {[
+                  ["Technical report","myojam: Open-Source Surface EMG Gesture Classification"],
+                  ["Most read article","Phantom limb EMG — 61 likes"],
+                  ["Newest article","The science of muscle-computer interfaces"],
+                ].map(([label, title]) => (
+                  <div key={label} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 12, padding: "16px 20px" }}>
+                    <div style={{ fontSize: 10, color: "rgba(245,158,11,0.5)", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 4 }}>{label}</div>
+                    <div style={{ fontSize: 14, color: "rgba(255,255,255,0.65)", fontWeight: 400, lineHeight: 1.4 }}>{title}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
