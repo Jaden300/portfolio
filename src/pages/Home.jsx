@@ -341,46 +341,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Decorative right panel */}
-        <div style={{ position:"absolute", right:0, top:0, width:"38%", height:"100%", overflow:"hidden", pointerEvents:"none" }}>
-          {/* Dot grid */}
-          {Array.from({ length:12 }).map((_,row) =>
-            Array.from({ length:8 }).map((_,col) => (
-              <div key={`${row}-${col}`} style={{
-                position:"absolute",
-                left:`${col*13+4}%`, top:`${row*9+2}%`,
-                width:3, height:3, borderRadius:"50%",
-                background:`rgba(201,146,42,${0.04 + ((row+col)%4)*0.05})`
-              }}/>
-            ))
-          )}
-          {/* Concentric rings */}
-          {[260,190,130,80].map((r,i) => (
+      {/* Decorative right panel — clean rings only */}
+        <div style={{ position:"absolute", right:"5%", top:"50%", transform:"translateY(-50%)", pointerEvents:"none", width:400, height:400 }}>
+          <style>{`
+            @keyframes ringPulse { 0%,100%{opacity:0.4;transform:translate(-50%,-50%) scale(1)} 50%{opacity:0.8;transform:translate(-50%,-50%) scale(1.04)} }
+            @keyframes ringFloat { 0%{transform:translate(-50%,-50%) rotate(0deg)} 100%{transform:translate(-50%,-50%) rotate(360deg)} }
+          `}</style>
+          {[300,220,150,90,40].map((r,i) => (
             <div key={r} style={{
-              position:"absolute", top:"50%", left:"40%",
-              width:r*2, height:r*2, borderRadius:"50%",
-              border:`1px solid rgba(201,146,42,${0.06+i*0.05})`,
+              position:"absolute", top:"50%", left:"50%",
+              width:r, height:r, borderRadius:"50%",
+              border:`1px solid rgba(201,146,42,${0.05 + i*0.07})`,
               transform:"translate(-50%,-50%)",
-              animation:`float ${5+i*2}s ${i*1.2}s ease-in-out infinite alternate`
+              animation:`ringPulse ${4+i}s ${i*0.8}s ease-in-out infinite`
             }}/>
           ))}
-          {/* Center gold dot */}
-          <div style={{ position:"absolute", top:"50%", left:"40%", transform:"translate(-50%,-50%)", width:10, height:10, borderRadius:"50%", background:"var(--gold)", opacity:0.5 }}/>
-          {/* Floating labels */}
-          {[
-            { text:"84.85% accuracy", top:"22%", left:"8%" },
-            { text:"EMG · ML · HCI",  top:"42%", left:"60%" },
-            { text:"Open source",     top:"65%", left:"12%" },
-            { text:"Ninapro DB5",     top:"75%", left:"55%" },
-          ].map(({ text, top, left }) => (
-            <div key={text} style={{
-              position:"absolute", top, left,
-              fontSize:11, color:"rgba(201,146,42,0.35)",
-              fontWeight:300, letterSpacing:"0.08em",
-              fontFamily:"var(--serif)", fontStyle:"italic",
-              whiteSpace:"nowrap"
-            }}>{text}</div>
-          ))}
+          <div style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", width:12, height:12, borderRadius:"50%", background:"var(--gold)", opacity:0.7, boxShadow:"0 0 24px rgba(201,146,42,0.6)" }}/>
         </div>
     </div>
   )

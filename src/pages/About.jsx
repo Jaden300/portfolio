@@ -1,4 +1,5 @@
 import Reveal from "../components/Reveal"
+import PageBanner from "../components/PageBanner"
 
 const EXPERIENCE = [
   {
@@ -46,43 +47,30 @@ export default function About() {
     <div style={{ background:"var(--bg)", minHeight:"100vh", paddingTop:60 }}>
 
       {/* Header */}
-      <section style={{ padding:"100px 48px 80px", borderBottom:"1px solid var(--border)", position:"relative", overflow:"hidden" }}>
-        <div style={{ position:"absolute", right:0, top:0, width:"40%", height:"100%", background:"var(--bg-2)", borderLeft:"1px solid var(--border)", zIndex:0 }}/>
-        <div style={{ maxWidth:1000, margin:"0 auto", position:"relative", zIndex:1 }}>
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:64, alignItems:"end" }}>
-            <div>
-              <div style={{ fontSize:10, color:"var(--gold)", textTransform:"uppercase", letterSpacing:"0.25em", marginBottom:20, fontFamily:"var(--serif)" }}>About me</div>
-              <h1 style={{ fontSize:"clamp(48px,8vw,80px)", fontWeight:800, letterSpacing:"-3px", lineHeight:0.95, marginBottom:32, fontFamily:"var(--serif)", color:"var(--text)" }}>
-                Jaden<br/><span className="gold-text">Wong.</span>
-              </h1>
-              <p style={{ fontSize:17, color:"var(--text-secondary)", fontWeight:300, lineHeight:1.85, marginBottom:16 }}>
-                I'm a 16-year-old engineer and researcher based in Toronto, Ontario. I build at the intersection of machine learning, biomedical signal processing, and human-computer interaction.
-              </p>
-              <p style={{ fontSize:17, color:"var(--text-secondary)", fontWeight:300, lineHeight:1.85 }}>
-                My work focuses on assistive technology  -  systems that expand human capability rather than replace it. Everything I build is open source and thoroughly documented.
-              </p>
+      <PageBanner
+        label="About me"
+        title="Jaden"
+        accent="Wong."
+        sub="Engineer and researcher based in Toronto, Ontario. Building at the intersection of ML, biomedical signal processing, and human-computer interaction."
+      />
 
-              <p style={{ fontSize:17, color:"var(--text-secondary)", fontWeight:300, lineHeight:1.85 }}>
-                Alongside the engineering work, I write. Eleven articles on myojam.com cover the full spectrum  -  from the neuroscience of motor learning to the ethics of biometric data, from hardware build guides to the future of brain-computer interfaces. I also authored a technical report on myojam's methodology, openly published and citable.
-              </p>
-            </div>
-            <div>
-              <div style={{ background:"var(--bg)", border:"1px solid var(--border)", borderRadius:"var(--radius)", padding:"32px" }}>
-                {[
-                  ["Location","Toronto, Ontario, Canada"],
-                  ["Age","16"],
-                  ["Focus","ML · Biomedical signal processing · Full-stack"],
-                  ["Languages","Python, JavaScript, C++"],
-                  ["Status","Open to internships"],
-                  ["Flagship","myojam.com"],
-                ].map(([k,v],i)=>(
-                  <div key={k} style={{ display:"flex", justifyContent:"space-between", gap:16, padding:"12px 0", borderBottom: i<5?"1px solid var(--border)":"none" }}>
-                    <span style={{ fontSize:12, color:"var(--text-tertiary)", fontWeight:300, textTransform:"uppercase", letterSpacing:"0.08em" }}>{k}</span>
-                    <span style={{ fontSize:13, color:"var(--text)", fontWeight:500, textAlign:"right" }}>{v}</span>
-                  </div>
-                ))}
+      {/* Quick facts — now sits below the banner */}
+      <section style={{ padding:"48px 48px 0", borderBottom:"1px solid var(--border)" }}>
+        <div style={{ maxWidth:1000, margin:"0 auto" }}>
+          <div style={{ background:"var(--bg-2)", border:"1px solid var(--border)", borderRadius:16, padding:"28px", display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:1 }}>
+            {[
+              ["Location","Toronto, Ontario, Canada"],
+              ["Focus","ML · Signal processing · Full-stack"],
+              ["Status","Open to work"],
+              ["Languages","Python, JavaScript, C++"],
+              ["Flagship","myojam.com"],
+              ["Availability","Remote or hybrid"],
+            ].map(([k,v],i) => (
+              <div key={k} style={{ padding:"16px 20px", borderRight: i%3<2?"1px solid var(--border)":"none", borderBottom: i<3?"1px solid var(--border)":"none" }}>
+                <div style={{ fontSize:10, color:"var(--text-tertiary)", textTransform:"uppercase", letterSpacing:"0.1em", marginBottom:4, fontWeight:300 }}>{k}</div>
+                <div style={{ fontSize:13, fontWeight:600, color:"var(--text)" }}>{v}</div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

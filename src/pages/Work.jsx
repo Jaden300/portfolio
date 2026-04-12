@@ -1,4 +1,5 @@
 import Reveal from "../components/Reveal"
+import PageBanner from "../components/PageBanner"
 
 const PROJECTS = [
   {
@@ -80,14 +81,12 @@ export default function Work() {
   return (
     <div style={{ background:"var(--bg)", minHeight:"100vh", paddingTop:60 }}>
       {/* Header */}
-      <section style={{ padding:"100px 48px 80px", borderBottom:"1px solid var(--border)" }}>
-        <div style={{ maxWidth:1000, margin:"0 auto" }}>
-          <div style={{ fontSize:10, color:"var(--gold)", textTransform:"uppercase", letterSpacing:"0.25em", marginBottom:20, fontFamily:"var(--serif)" }}>Selected work</div>
-          <h1 style={{ fontSize:"clamp(48px,8vw,80px)", fontWeight:800, letterSpacing:"-3px", lineHeight:0.95, fontFamily:"var(--serif)", color:"var(--text)" }}>
-            What I've<br/><span className="gold-text">built.</span>
-          </h1>
-        </div>
-      </section>
+      <PageBanner
+        label="Selected work"
+        title="What I've"
+        accent="built."
+        sub="One flagship project, multiple ML experiments. All open source, all documented."
+      />
 
       {/* Tag strip */}
           <div style={{ display:"flex", gap:10, flexWrap:"wrap", marginTop:24 }}>

@@ -1,4 +1,5 @@
 import Reveal from "../components/Reveal"
+import PageBanner from "../components/PageBanner"
 
 const PAPER = {
   title: "myojam: Open-Source Surface EMG Gesture Classification for Assistive Human-Computer Interaction",
@@ -123,26 +124,22 @@ export default function Research() {
     <div style={{ background: "var(--bg)", minHeight: "100vh", paddingTop: 60 }}>
 
       {/* Header */}
-      <section style={{ padding: "100px 48px 80px", borderBottom: "1px solid var(--border)", position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "absolute", right: 0, top: 0, width: "35%", height: "100%", background: "var(--bg-2)", borderLeft: "1px solid var(--border)" }}/>
-        <div style={{ maxWidth: 1000, margin: "0 auto", position: "relative", zIndex: 1 }}>
-          <div style={{ fontSize: 10, color: "var(--gold)", textTransform: "uppercase", letterSpacing: "0.25em", marginBottom: 20, fontFamily: "var(--serif)" }}>Research & writing</div>
-          <h1 style={{ fontSize: "clamp(48px,8vw,80px)", fontWeight: 800, letterSpacing: "-3px", lineHeight: 0.95, fontFamily: "var(--serif)", color: "var(--text)", marginBottom: 24 }}>
-            Research<br/><span className="gold-text">&amp; articles.</span>
-          </h1>
-          <p style={{ fontSize: 17, color: "var(--text-secondary)", fontWeight: 300, lineHeight: 1.8, maxWidth: 520 }}>
-            A technical report on myojam's methodology, eleven articles on EMG science and assistive technology, and three full lesson plans for classroom use  -  all openly published.
-          </p>
+      <PageBanner
+        label="Research & writing"
+        title="Research &"
+        accent="articles."
+        sub="A technical report, eleven published articles, and three lesson plans — all openly available."
+      />
 
-          {/* Quick stats */}
-          <div style={{ display: "flex", gap: 40, marginTop: 40 }}>
-            {[["1","Technical report"],["11","Published articles"],["3","Lesson plans"],["450+","Total likes"]].map(([val,label]) => (
-              <div key={label}>
-                <div style={{ fontSize: 28, fontWeight: 800, color: "var(--text)", letterSpacing: "-1px", fontFamily: "var(--serif)" }}>{val}</div>
-                <div style={{ fontSize: 12, color: "var(--text-tertiary)", fontWeight: 300, textTransform: "uppercase", letterSpacing: "0.08em" }}>{label}</div>
-              </div>
-            ))}
-          </div>
+      {/* Stats row — keep this, it's good, just move it below banner */}
+      <section style={{ borderBottom:"1px solid var(--border)" }}>
+        <div style={{ maxWidth:1000, margin:"0 auto", display:"grid", gridTemplateColumns:"repeat(4,1fr)" }}>
+          {[["1","Technical report"],["11","Published articles"],["3","Lesson plans"],["450+","Total likes"]].map(([val,label],i) => (
+            <div key={label} style={{ padding:"32px 28px", borderRight:i<3?"1px solid var(--border)":"none", textAlign:"center" }}>
+              <div style={{ fontSize:32, fontWeight:800, color:"var(--text)", letterSpacing:"-1.5px", fontFamily:"var(--serif)" }}>{val}</div>
+              <div style={{ fontSize:11, color:"var(--text-tertiary)", fontWeight:300, textTransform:"uppercase", letterSpacing:"0.08em", marginTop:4 }}>{label}</div>
+            </div>
+          ))}
         </div>
       </section>
 
