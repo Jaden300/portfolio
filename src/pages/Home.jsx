@@ -340,6 +340,48 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
+
+      {/* Decorative right panel */}
+        <div style={{ position:"absolute", right:0, top:0, width:"38%", height:"100%", overflow:"hidden", pointerEvents:"none" }}>
+          {/* Dot grid */}
+          {Array.from({ length:12 }).map((_,row) =>
+            Array.from({ length:8 }).map((_,col) => (
+              <div key={`${row}-${col}`} style={{
+                position:"absolute",
+                left:`${col*13+4}%`, top:`${row*9+2}%`,
+                width:3, height:3, borderRadius:"50%",
+                background:`rgba(201,146,42,${0.04 + ((row+col)%4)*0.05})`
+              }}/>
+            ))
+          )}
+          {/* Concentric rings */}
+          {[260,190,130,80].map((r,i) => (
+            <div key={r} style={{
+              position:"absolute", top:"50%", left:"40%",
+              width:r*2, height:r*2, borderRadius:"50%",
+              border:`1px solid rgba(201,146,42,${0.06+i*0.05})`,
+              transform:"translate(-50%,-50%)",
+              animation:`float ${5+i*2}s ${i*1.2}s ease-in-out infinite alternate`
+            }}/>
+          ))}
+          {/* Center gold dot */}
+          <div style={{ position:"absolute", top:"50%", left:"40%", transform:"translate(-50%,-50%)", width:10, height:10, borderRadius:"50%", background:"var(--gold)", opacity:0.5 }}/>
+          {/* Floating labels */}
+          {[
+            { text:"84.85% accuracy", top:"22%", left:"8%" },
+            { text:"EMG · ML · HCI",  top:"42%", left:"60%" },
+            { text:"Open source",     top:"65%", left:"12%" },
+            { text:"Ninapro DB5",     top:"75%", left:"55%" },
+          ].map(({ text, top, left }) => (
+            <div key={text} style={{
+              position:"absolute", top, left,
+              fontSize:11, color:"rgba(201,146,42,0.35)",
+              fontWeight:300, letterSpacing:"0.08em",
+              fontFamily:"var(--serif)", fontStyle:"italic",
+              whiteSpace:"nowrap"
+            }}>{text}</div>
+          ))}
+        </div>
     </div>
   )
 }

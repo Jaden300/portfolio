@@ -89,6 +89,13 @@ export default function Work() {
         </div>
       </section>
 
+      {/* Tag strip */}
+          <div style={{ display:"flex", gap:10, flexWrap:"wrap", marginTop:24 }}>
+            {["myojam","EMG Gesture Classification","Unsupervised Learning","Mobile Price Classification","Student Performance Regression","Random Forest","PyQt6","FastAPI","React","scikit-learn","Three.js"].map(tag => (
+              <span key={tag} style={{ fontSize:12, color:"var(--text-tertiary)", background:"var(--bg-2)", border:"1px solid var(--border)", borderRadius:100, padding:"6px 14px", fontWeight:300 }}>{tag}</span>
+            ))}
+          </div>
+
       {/* Projects */}
       <section style={{ padding:"64px 48px" }}>
         <div style={{ maxWidth:1000, margin:"0 auto", display:"flex", flexDirection:"column", gap:24 }}>

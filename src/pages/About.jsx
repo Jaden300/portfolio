@@ -87,6 +87,13 @@ export default function About() {
         </div>
       </section>
 
+      {/* Decorative tag cloud above facts */}
+              <div style={{ marginBottom:16, display:"flex", flexWrap:"wrap", gap:8 }}>
+                {["Machine Learning","Signal Processing","React","FastAPI","Python","PyQt6","Arduino","Open Source","EMG","Ninapro"].map(tag => (
+                  <span key={tag} style={{ fontSize:11, color:"var(--text-tertiary)", background:"var(--bg)", border:"1px solid var(--border)", borderRadius:100, padding:"4px 12px", fontWeight:300 }}>{tag}</span>
+                ))}
+              </div>
+
       {/* Experience */}
       <section style={{ padding:"80px 48px", borderBottom:"1px solid var(--border)" }}>
         <div style={{ maxWidth:1000, margin:"0 auto" }}>

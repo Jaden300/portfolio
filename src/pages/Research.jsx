@@ -146,6 +146,13 @@ export default function Research() {
         </div>
       </section>
 
+      {/* Keyword strip */}
+          <div style={{ display:"flex", gap:8, flexWrap:"wrap", marginTop:32 }}>
+            {["Surface EMG","Random Forest","Ninapro DB5","Gesture Classification","Signal Processing","Assistive Technology","Neuroscience","Machine Learning","Open Source","BCI"].map(tag => (
+              <span key={tag} style={{ fontSize:11, color:"rgba(201,146,42,0.6)", background:"rgba(201,146,42,0.06)", border:"1px solid rgba(201,146,42,0.15)", borderRadius:100, padding:"5px 13px", fontWeight:300 }}>{tag}</span>
+            ))}
+          </div>
+
       {/* Technical report */}
       <section style={{ padding: "80px 48px", borderBottom: "1px solid var(--border)" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>

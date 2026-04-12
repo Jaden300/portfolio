@@ -113,18 +113,18 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Tally contact form */}
-          <Reveal delay={0.2}>
-            <div style={{ marginTop: 40 }}>
-              <div style={{ fontSize: 10, color: "var(--gold)", textTransform: "uppercase", letterSpacing: "0.25em", marginBottom: 16, fontFamily: "var(--serif)" }}>Send a message</div>
-              <div style={{ background: "var(--bg-2)", border: "1px solid var(--border)", borderRadius: 20, overflow: "hidden", padding: "0 20px" }}>
+      {/* RIGHT: Tally form — constrained */}
+          <Reveal delay={0.1}>
+            <div>
+              <div style={{ fontSize:10, color:"var(--gold)", textTransform:"uppercase", letterSpacing:"0.25em", marginBottom:20, fontFamily:"var(--serif)" }}>Send a message</div>
+              <div style={{ background:"var(--bg-2)", border:"1px solid var(--border)", borderRadius:18, overflow:"hidden", padding:"8px 20px 0" }}>
                 <iframe
-                  src="https://tally.so/embed/9qEW0Q?hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                  src="https://tally.so/embed/YOUR_TALLY_ID?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
                   width="100%"
-                  height="420"
+                  height="460"
                   frameBorder="0"
-                  title="Contact form"
-                  style={{ display: "block" }}
+                  title="Contact"
+                  style={{ display:"block", maxWidth:"100%" }}
                 />
               </div>
             </div>
