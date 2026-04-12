@@ -111,7 +111,7 @@ export default function Home() {
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center" }}>
             <p style={{ fontSize: "clamp(15px,2vw,18px)", color: "var(--text-secondary)", fontWeight: 300, lineHeight: 1.85, opacity: loaded ? 1 : 0, transition: "opacity 0.8s 0.5s ease" }}>
-                I build at the intersection of machine learning, biomedical signal processing, and human-computer interaction. My flagship project, <strong style={{ fontWeight: 600, color: "var(--text)" }}>myojam</strong>, classifies hand gestures from EMG signals at 84.85% cross-subject accuracy — and has become a full research and education platform with 11 published articles, lesson plans, and interactive demos.
+                I build at the intersection of machine learning, biomedical signal processing, and human-computer interaction. My flagship project, <strong style={{ fontWeight: 600, color: "var(--text)" }}>myojam</strong>, classifies hand gestures from EMG signals at 84.85% cross-subject accuracy  -  and has become a full research and education platform with 11 published articles, lesson plans, and interactive demos.
               </p>
 
             <div style={{ display: "flex", flexDirection: "column", gap: 12, opacity: loaded ? 1 : 0, transition: "opacity 0.8s 0.6s ease" }}>
@@ -192,7 +192,7 @@ export default function Home() {
                   1 technical report.<br />11 published articles.
                 </h2>
                 <p style={{ fontSize: 15, color: "rgba(255,255,255,0.45)", fontWeight: 300, lineHeight: 1.8, marginBottom: 28 }}>
-                  A peer-readable technical report on myojam's methodology and eleven articles spanning neuroscience, signal processing, machine learning, hardware, and the ethics of biometric interfaces — all openly published on myojam.com.
+                  A peer-readable technical report on myojam's methodology and eleven articles spanning neuroscience, signal processing, machine learning, hardware, and the ethics of biometric interfaces  -  all openly published on myojam.com.
                 </p>
                 <button onClick={() => window.location.href = "/research"} style={{ background: "linear-gradient(135deg, #C9922A, #E8B84B)", color: "#0a0000", border: "none", borderRadius: 100, padding: "12px 28px", fontSize: 14, fontWeight: 700, cursor: "pointer", transition: "transform 0.2s" }}
                   onMouseEnter={e => e.currentTarget.style.transform = "scale(1.05)"}
@@ -202,7 +202,7 @@ export default function Home() {
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 {[
                   ["Technical report","myojam: Open-Source Surface EMG Gesture Classification"],
-                  ["Most read article","Phantom limb EMG — 61 likes"],
+                  ["Most read article","Phantom limb EMG  -  61 likes"],
                   ["Newest article","The science of muscle-computer interfaces"],
                 ].map(([label, title]) => (
                   <div key={label} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 12, padding: "16px 20px" }}>
@@ -270,7 +270,7 @@ export default function Home() {
               >
                 <div style={{ fontSize: 11, color: "var(--gold)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 12 }}>Machine Learning</div>
                 <h3 style={{ fontSize: 22, fontWeight: 700, color: "var(--text)", letterSpacing: "-0.5px", marginBottom: 12, fontFamily: "var(--serif)" }}>Unsupervised Learning</h3>
-                <p style={{ fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.75, fontWeight: 300, marginBottom: 20 }}>PCA, t-SNE, KMeans, DBSCAN, and more — on Spotify and Sign Language MNIST datasets. Full dimensionality reduction and clustering workflow.</p>
+                <p style={{ fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.75, fontWeight: 300, marginBottom: 20 }}>PCA, t-SNE, KMeans, DBSCAN, and more  -  on Spotify and Sign Language MNIST datasets. Full dimensionality reduction and clustering workflow.</p>
                 <span style={{ fontSize: 13, color: "var(--gold)", fontWeight: 500 }}>GitHub ↗</span>
               </div>
             </Reveal>

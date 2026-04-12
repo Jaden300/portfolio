@@ -11,12 +11,12 @@ const PROJECTS = [
     tags:["Python","React","FastAPI","scikit-learn","PyQt6","Three.js","Vite"],
     summary:"Open-source surface EMG gesture classification system achieving 84.85% cross-subject accuracy on Ninapro DB5. Full-stack platform including education hub, interactive demos, block coding environment, and ELEVATE international competition.",
     highlights:[
-      "84.85% cross-subject accuracy — tested on subjects never seen during training",
+      "84.85% cross-subject accuracy  -  tested on subjects never seen during training",
       "Full-stack: FastAPI on Render, React/Vite on Vercel, native macOS PyQt6 desktop app",
       "11 published educational articles, 3 full lesson plans, educators hub",
-      "myocode — Scratch-like block coding environment with EMG gesture events",
+      "myocode  -  Scratch-like block coding environment with EMG gesture events",
       "5 interactive browser demos including frequency analyzer and confusion matrix explorer",
-      "ELEVATE — international competition with 4 tracks, open globally, free to enter",
+      "ELEVATE  -  international competition with 4 tracks, open globally, free to enter",
     ],
     metrics:[["84.85%","Accuracy"],["<5ms","Inference"],["16ch","EMG input"],["MIT","License"]],
     dark:true,
@@ -47,7 +47,7 @@ const PROJECTS = [
     url:"https://github.com/Jaden300/Mobile-Price-Classification",
     github:"https://github.com/Jaden300/Mobile-Price-Classification",
     tags:["Python","XGBoost","Random Forest","SVM","LIME","GridSearchCV"],
-    summary:"Complete ML workflow on the Mobile Price Classification dataset. Comprehensive model comparison with explainability — from Logistic Regression and KNN through ensemble methods and XGBoost, with LIME local explanations.",
+    summary:"Complete ML workflow on the Mobile Price Classification dataset. Comprehensive model comparison with explainability  -  from Logistic Regression and KNN through ensemble methods and XGBoost, with LIME local explanations.",
     highlights:[
       "10+ algorithms compared: Logistic Regression, KNN, SVM, Decision Trees, Random Forest, XGBoost",
       "Hyperparameter tuning via GridSearchCV and cross-validation",
@@ -121,7 +121,7 @@ export default function Work() {
                   <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:8, marginBottom:24 }}>
                     {p.highlights.map(h=>(
                       <div key={h} style={{ display:"flex", gap:8, alignItems:"flex-start", fontSize:13, color: p.dark?"rgba(255,255,255,0.4)":"var(--text-secondary)", fontWeight:300, lineHeight:1.6 }}>
-                        <span style={{ color:"var(--gold)", flexShrink:0, marginTop:2 }}>—</span>{h}
+                        <span style={{ color:"var(--gold)", flexShrink:0, marginTop:2 }}> - </span>{h}
                       </div>
                     ))}
                   </div>
@@ -156,7 +156,7 @@ export default function Work() {
           <div style={{ fontSize:10, color:"var(--gold)", textTransform:"uppercase", letterSpacing:"0.25em", marginBottom:16, fontFamily:"var(--serif)" }}>Publications & Writing</div>
           <h2 style={{ fontSize:"clamp(28px,4vw,44px)", fontWeight:700, color:"var(--text)", letterSpacing:"-1.5px", marginBottom:12, fontFamily:"var(--serif)" }}>Research & articles.</h2>
           <p style={{ fontSize:16, color:"var(--text-secondary)", fontWeight:300, lineHeight:1.7, maxWidth:560, marginBottom:48 }}>
-            Technical writing published on myojam.com — spanning neuroscience, signal processing, machine learning, and the ethics of biometric interfaces.
+            Technical writing published on myojam.com  -  spanning neuroscience, signal processing, machine learning, and the ethics of biometric interfaces.
           </p>
         </Reveal>
 
@@ -174,7 +174,7 @@ export default function Work() {
                   myojam: Open-Source Surface EMG Gesture Classification for Assistive Human-Computer Interaction
                 </h3>
                 <p style={{ fontSize:14, color:"rgba(255,255,255,0.45)", fontWeight:300, lineHeight:1.75, maxWidth:560, marginBottom:16 }}>
-                  Full technical report on the myojam classification pipeline — methodology, cross-subject evaluation protocol, confusion matrix analysis, and system integration. Includes interactive figures and BibTeX citation.
+                  Full technical report on the myojam classification pipeline  -  methodology, cross-subject evaluation protocol, confusion matrix analysis, and system integration. Includes interactive figures and BibTeX citation.
                 </p>
                 <div style={{ fontSize:13, color:"rgba(255,255,255,0.3)", fontWeight:300, fontFamily:"var(--serif)", fontStyle:"italic" }}>
                   Wong, J. (2026). myojam Technical Report. myojam Project.
@@ -192,7 +192,7 @@ export default function Work() {
             { title:"Why Random Forest? The classifier behind myojam", tag:"Machine Learning", url:"https://myojam.com/education/random-forest-emg",    date:"March 2026" },
             { title:"From lab to laptop: democratising EMG",           tag:"Accessibility",    url:"https://myojam.com/education/open-source-emg",     date:"March 2026" },
             { title:"Inside Ninapro DB5: the dataset that trains myojam", tag:"Dataset",      url:"https://myojam.com/education/ninapro-db5",         date:"Feb 2026" },
-            { title:"Muscle memory is real — it's just not in your muscles", tag:"Neuroscience", url:"https://myojam.com/education/muscle-memory",    date:"Jan 2026" },
+            { title:"Muscle memory is real  -  it's just not in your muscles", tag:"Neuroscience", url:"https://myojam.com/education/muscle-memory",    date:"Jan 2026" },
             { title:"Why EMG is harder than it looks",                 tag:"Signal Processing",url:"https://myojam.com/education/why-emg-is-hard",     date:"Nov 2025" },
             { title:"Build your own EMG sensor for under $60",         tag:"Hardware",         url:"https://myojam.com/education/build-your-own",      date:"Oct 2025" },
             { title:"Who owns your muscle data? Ethics of EMG",        tag:"Ethics",           url:"https://myojam.com/education/ethics-of-emg",       date:"Aug 2025" },

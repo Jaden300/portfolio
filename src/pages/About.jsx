@@ -4,7 +4,7 @@ const EXPERIENCE = [
   {
     company: "Fairly AI",
     location: "Kitchener, ON",
-    role: "AI Intern — QA Assistant (Student Co-op)",
+    role: "AI Intern  -  QA Assistant (Student Co-op)",
     period: "Sept 2025 – Jan 2026",
     color: "#3B82F6",
     bullets: [
@@ -21,17 +21,17 @@ const EDUCATION = [
     school: "Bur Oak Secondary School",
     location: "Markham, ON",
     period: "2023 – present",
-    note: "Software Engineering Workshop Club — Lesson Planner · Designed Python curriculum for elementary students",
+    note: "Software Engineering Workshop Club  -  Lesson Planner · Designed Python curriculum for elementary students",
   },
 ]
 
 const TIMELINE = [
-  { year:"Sept 2024", event:"Started myojam — EMG gesture classification from scratch using public data" },
+  { year:"Sept 2024", event:"Started myojam  -  EMG gesture classification from scratch using public data" },
   { year:"Dec 2024",  event:"Reached 84.85% cross-subject accuracy on Ninapro DB5" },
-  { year:"Feb 2025",  event:"Launched myojam.com — full-stack web demo, no hardware required" },
-  { year:"Sept 2025", event:"Co-op at Fairly AI as AI QA Intern — designed 1,000+ test cases" },
+  { year:"Feb 2025",  event:"Launched myojam.com  -  full-stack web demo, no hardware required" },
+  { year:"Sept 2025", event:"Co-op at Fairly AI as AI QA Intern  -  designed 1,000+ test cases" },
   { year:"Jan 2026",  event:"Completed Fairly AI co-op; returned to myojam development" },
-  { year:"Apr 2026",  event:"Launched ELEVATE — international EMG innovation competition" },
+  { year:"Apr 2026",  event:"Launched ELEVATE  -  international EMG innovation competition" },
 ]
 
 const SKILLS = [
@@ -59,11 +59,11 @@ export default function About() {
                 I'm a 16-year-old engineer and researcher based in Toronto, Ontario. I build at the intersection of machine learning, biomedical signal processing, and human-computer interaction.
               </p>
               <p style={{ fontSize:17, color:"var(--text-secondary)", fontWeight:300, lineHeight:1.85 }}>
-                My work focuses on assistive technology — systems that expand human capability rather than replace it. Everything I build is open source and thoroughly documented.
+                My work focuses on assistive technology  -  systems that expand human capability rather than replace it. Everything I build is open source and thoroughly documented.
               </p>
 
               <p style={{ fontSize:17, color:"var(--text-secondary)", fontWeight:300, lineHeight:1.85 }}>
-                Alongside the engineering work, I write. Eleven articles on myojam.com cover the full spectrum — from the neuroscience of motor learning to the ethics of biometric data, from hardware build guides to the future of brain-computer interfaces. I also authored a technical report on myojam's methodology, openly published and citable.
+                Alongside the engineering work, I write. Eleven articles on myojam.com cover the full spectrum  -  from the neuroscience of motor learning to the ethics of biometric data, from hardware build guides to the future of brain-computer interfaces. I also authored a technical report on myojam's methodology, openly published and citable.
               </p>
             </div>
             <div>

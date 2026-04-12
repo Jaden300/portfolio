@@ -92,7 +92,7 @@ export default function Contact() {
                   Open to work.
                 </h3>
                 <p style={{ fontSize:14, color:"rgba(255,255,255,0.45)", lineHeight:1.8, fontWeight:300, marginBottom:24 }}>
-                  Looking for internship opportunities in ML research, biomedical engineering, and full-stack development. Based in Toronto — remote or hybrid. Let's build something that matters.
+                  Looking for internship opportunities in ML research, biomedical engineering, and full-stack development. Based in Toronto  -  remote or hybrid. Let's build something that matters.
                 </p>
                 <div style={{ display:"flex", flexWrap:"wrap", gap:8 }}>
                   {["ML Research","Biomedical Engineering","Full-Stack Dev","Assistive Technology"].map(tag=>(
@@ -113,4 +113,20 @@ export default function Contact() {
       </section>
     </div>
   )
+  {/* Tally contact form */}
+          <Reveal delay={0.2}>
+            <div style={{ marginTop: 40 }}>
+              <div style={{ fontSize: 10, color: "var(--gold)", textTransform: "uppercase", letterSpacing: "0.25em", marginBottom: 16, fontFamily: "var(--serif)" }}>Send a message</div>
+              <div style={{ background: "var(--bg-2)", border: "1px solid var(--border)", borderRadius: 20, overflow: "hidden", padding: "0 20px" }}>
+                <iframe
+                  src="https://tally.so/embed/YOUR_TALLY_ID?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                  width="100%"
+                  height="420"
+                  frameBorder="0"
+                  title="Contact form"
+                  style={{ display: "block" }}
+                />
+              </div>
+            </div>
+          </Reveal>
 }
