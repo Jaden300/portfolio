@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom"
 import { useEffect, useRef, useState } from "react"
 import Reveal from "../components/Reveal"
 import HeroCanvas3D from "../components/HeroCanvas3D"
+import RoyalCanvas3D from "../components/RoyalCanvas3D"
 
 // Text scramble effect
 function useScramble(text, trigger) {
@@ -310,6 +311,19 @@ export default function Home() {
               </div>
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      {/* ── ROYAL 3D SHOWCASE */}
+      <section style={{ height: "90vh", position: "relative", overflow: "hidden", background: "var(--bg-dark)", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+        <RoyalCanvas3D />
+
+        {/* Subtle ambient text — barely visible, lets the 3D be the star */}
+        <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end", padding: "0 0 52px", pointerEvents: "none" }}>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
+            <div style={{ fontSize: 10, color: "rgba(201,146,42,0.35)", textTransform: "uppercase", letterSpacing: "0.3em" }}>Scroll to reveal</div>
+            <div style={{ width: 1, height: 36, background: "linear-gradient(to bottom, rgba(201,146,42,0.3), transparent)" }}/>
+          </div>
         </div>
       </section>
 
