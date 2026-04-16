@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { useEffect, useRef, useState } from "react"
 import Reveal from "../components/Reveal"
+import HeroCanvas3D from "../components/HeroCanvas3D"
 
 // Text scramble effect
 function useScramble(text, trigger) {
@@ -74,12 +75,10 @@ export default function Home() {
         {/* Background grid */}
         <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px)", backgroundSize: "64px 64px", pointerEvents: "none" }}/>
 
-        {/* Gold accent circle */}
-        <div style={{ position: "absolute", right: "8%", top: "20%", width: 480, height: 480, borderRadius: "50%", background: "radial-gradient(circle, rgba(201,146,42,0.12) 0%, transparent 70%)", pointerEvents: "none", animation: "float 6s ease-in-out infinite alternate" }}/>
-        <div style={{ position: "absolute", right: "15%", top: "25%", width: 320, height: 320, borderRadius: "50%", border: "1px solid rgba(201,146,42,0.15)", pointerEvents: "none" }}/>
-        <div style={{ position: "absolute", right: "20%", top: "30%", width: 200, height: 200, borderRadius: "50%", border: "1px solid rgba(201,146,42,0.1)", pointerEvents: "none" }}/>
+        {/* 3D canvas */}
+        <HeroCanvas3D />
 
-        <div style={{ maxWidth: 1000, margin: "0 auto", width: "100%", paddingTop: 80 }}>
+        <div style={{ maxWidth: 580, width: "100%", paddingTop: 80, position: "relative", zIndex: 1 }}>
           {/* Status */}
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 48, opacity: loaded ? 1 : 0, transition: "opacity 0.8s ease" }}>
             <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#10B981", animation: "pulse 2s infinite" }}/>
@@ -109,34 +108,32 @@ export default function Home() {
             </span>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center" }}>
-            <p style={{ fontSize: "clamp(15px,2vw,18px)", color: "var(--text-secondary)", fontWeight: 300, lineHeight: 1.85, opacity: loaded ? 1 : 0, transition: "opacity 0.8s 0.5s ease" }}>
-                I build at the intersection of machine learning, biomedical signal processing, and human-computer interaction. My flagship project, <strong style={{ fontWeight: 600, color: "var(--text)" }}>myojam</strong>, classifies hand gestures from EMG signals at 84.85% cross-subject accuracy  -  and has become a full research and education platform with 11 published articles, lesson plans, and interactive demos.
-              </p>
+          <p style={{ fontSize: "clamp(14px,1.6vw,17px)", color: "var(--text-secondary)", fontWeight: 300, lineHeight: 1.85, opacity: loaded ? 1 : 0, transition: "opacity 0.8s 0.5s ease", marginBottom: 32 }}>
+            I build at the intersection of machine learning, biomedical signal processing, and human-computer interaction. My flagship project, <strong style={{ fontWeight: 600, color: "var(--text)" }}>myojam</strong>, classifies hand gestures from EMG signals at 84.85% cross-subject accuracy — and has become a full research and education platform with 11 published articles, lesson plans, and interactive demos.
+          </p>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: 12, opacity: loaded ? 1 : 0, transition: "opacity 0.8s 0.6s ease" }}>
-              <button onClick={() => navigate("/work")} style={{
-                background: "var(--text)", color: "var(--bg)",
-                border: "none", borderRadius: 100, padding: "16px 36px",
-                fontSize: 15, fontWeight: 600, cursor: "none",
-                letterSpacing: "0.02em", textAlign: "center",
-                transition: "background 0.2s, transform 0.2s, box-shadow 0.2s",
-                boxShadow: "0 4px 20px rgba(0,0,0,0.12)"
-              }}
-                onMouseEnter={e => { e.currentTarget.style.background = "var(--gold)"; e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 12px 32px rgba(201,146,42,0.3)" }}
-                onMouseLeave={e => { e.currentTarget.style.background = "var(--text)"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 4px 20px rgba(0,0,0,0.12)" }}
-              >View my work →</button>
-              <button onClick={() => navigate("/contact")} style={{
-                background: "transparent", color: "var(--text)",
-                border: "1.5px solid var(--border-dark)", borderRadius: 100,
-                padding: "16px 36px", fontSize: 15, fontWeight: 400,
-                cursor: "none", letterSpacing: "0.02em",
-                transition: "border-color 0.2s, color 0.2s, transform 0.2s"
-              }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--gold)"; e.currentTarget.style.color = "var(--gold)"; e.currentTarget.style.transform = "translateY(-3px)" }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border-dark)"; e.currentTarget.style.color = "var(--text)"; e.currentTarget.style.transform = "translateY(0)" }}
-              >Get in touch</button>
-            </div>
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", opacity: loaded ? 1 : 0, transition: "opacity 0.8s 0.6s ease" }}>
+            <button onClick={() => navigate("/work")} style={{
+              background: "var(--text)", color: "var(--bg)",
+              border: "none", borderRadius: 100, padding: "16px 36px",
+              fontSize: 15, fontWeight: 600, cursor: "none",
+              letterSpacing: "0.02em",
+              transition: "background 0.2s, transform 0.2s, box-shadow 0.2s",
+              boxShadow: "0 4px 20px rgba(0,0,0,0.12)"
+            }}
+              onMouseEnter={e => { e.currentTarget.style.background = "var(--gold)"; e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 12px 32px rgba(201,146,42,0.3)" }}
+              onMouseLeave={e => { e.currentTarget.style.background = "var(--text)"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 4px 20px rgba(0,0,0,0.12)" }}
+            >View my work →</button>
+            <button onClick={() => navigate("/contact")} style={{
+              background: "transparent", color: "var(--text)",
+              border: "1.5px solid var(--border-dark)", borderRadius: 100,
+              padding: "16px 36px", fontSize: 15, fontWeight: 400,
+              cursor: "none", letterSpacing: "0.02em",
+              transition: "border-color 0.2s, color 0.2s, transform 0.2s"
+            }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--gold)"; e.currentTarget.style.color = "var(--gold)"; e.currentTarget.style.transform = "translateY(-3px)" }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border-dark)"; e.currentTarget.style.color = "var(--text)"; e.currentTarget.style.transform = "translateY(0)" }}
+            >Get in touch</button>
           </div>
         </div>
 
@@ -341,23 +338,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Decorative right panel — clean rings only */}
-        <div style={{ position:"absolute", right:"5%", top:"50%", transform:"translateY(-50%)", pointerEvents:"none", width:400, height:400 }}>
-          <style>{`
-            @keyframes ringPulse { 0%,100%{opacity:0.4;transform:translate(-50%,-50%) scale(1)} 50%{opacity:0.8;transform:translate(-50%,-50%) scale(1.04)} }
-            @keyframes ringFloat { 0%{transform:translate(-50%,-50%) rotate(0deg)} 100%{transform:translate(-50%,-50%) rotate(360deg)} }
-          `}</style>
-          {[300,220,150,90,40].map((r,i) => (
-            <div key={r} style={{
-              position:"absolute", top:"50%", left:"50%",
-              width:r, height:r, borderRadius:"50%",
-              border:`1px solid rgba(201,146,42,${0.05 + i*0.07})`,
-              transform:"translate(-50%,-50%)",
-              animation:`ringPulse ${4+i}s ${i*0.8}s ease-in-out infinite`
-            }}/>
-          ))}
-          <div style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", width:12, height:12, borderRadius:"50%", background:"var(--gold)", opacity:0.7, boxShadow:"0 0 24px rgba(201,146,42,0.6)" }}/>
-        </div>
     </div>
   )
 }
