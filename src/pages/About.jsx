@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import Reveal from "../components/Reveal"
 import PageBanner from "../components/PageBanner"
 import ChessLazySusan from "../components/ChessLazySusan"
@@ -44,6 +45,7 @@ const SKILLS = [
 ]
 
 export default function About() {
+  const navigate = useNavigate()
   return (
     <div style={{ background:"var(--bg)", minHeight:"100vh", paddingTop:60 }}>
 
@@ -78,6 +80,21 @@ export default function About() {
 
       {/* ── Chess Lazy Susan */}
       <ChessLazySusan />
+
+      {/* ── Rotunda teaser */}
+      <section style={{ background:"var(--bg-dark)", borderTop:"1px solid rgba(255,255,255,0.05)", padding:"80px 48px", textAlign:"center" }}>
+        <Reveal>
+          <div style={{ fontSize:10, color:"rgba(201,146,42,0.45)", textTransform:"uppercase", letterSpacing:"0.3em", marginBottom:20, fontFamily:"var(--serif)" }}>Artefact Nº 001</div>
+          <h2 style={{ fontSize:"clamp(28px,4vw,44px)", fontWeight:300, fontStyle:"italic", color:"rgba(239,230,209,0.9)", letterSpacing:"-1px", fontFamily:"'Fraunces', Georgia, serif", marginBottom:16 }}>Rotunda</h2>
+          <p style={{ fontSize:15, color:"rgba(239,230,209,0.4)", fontWeight:300, lineHeight:1.8, maxWidth:420, margin:"0 auto 36px", fontFamily:"var(--serif)" }}>
+            A scroll-driven icosahedron that passes through five material stages — Stone, Obsidian, Gold, Glass, Wire.
+          </p>
+          <button onClick={() => navigate("/rotunda")} style={{ fontFamily:"'Inter', sans-serif", fontSize:11, letterSpacing:"0.3em", textTransform:"uppercase", color:"rgba(239,230,209,0.85)", padding:"14px 28px", border:"1px solid rgba(239,230,209,0.18)", borderRadius:999, background:"transparent", cursor:"none", transition:"background .3s, color .3s, border-color .3s" }}
+            onMouseEnter={e => { e.currentTarget.style.background="#c9a24a"; e.currentTarget.style.color="#111"; e.currentTarget.style.borderColor="#c9a24a" }}
+            onMouseLeave={e => { e.currentTarget.style.background="transparent"; e.currentTarget.style.color="rgba(239,230,209,0.85)"; e.currentTarget.style.borderColor="rgba(239,230,209,0.18)" }}
+          >Enter Rotunda →</button>
+        </Reveal>
+      </section>
 
       {/* Experience */}
       <section style={{ padding:"80px 48px", borderBottom:"1px solid var(--border)" }}>
