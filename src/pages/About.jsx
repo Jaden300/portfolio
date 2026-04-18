@@ -1,5 +1,6 @@
 import Reveal from "../components/Reveal"
 import PageBanner from "../components/PageBanner"
+import ChessLazySusan from "../components/ChessLazySusan"
 
 const EXPERIENCE = [
   {
@@ -74,6 +75,9 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      {/* ── Chess Lazy Susan */}
+      <ChessLazySusan />
 
       {/* Experience */}
       <section style={{ padding:"80px 48px", borderBottom:"1px solid var(--border)" }}>
