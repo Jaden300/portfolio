@@ -412,7 +412,7 @@ export default function ChessLazySusan() {
 
           {/* Piece label */}
           <div style={{
-            fontSize: 10, color: "rgba(201,146,42,0.45)",
+            fontSize: 10, color: "rgba(245,158,11,0.45)",
             textTransform: "uppercase", letterSpacing: "0.32em",
             marginBottom: 18, fontFamily: "var(--serif)",
           }}>
@@ -442,8 +442,8 @@ export default function ChessLazySusan() {
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 44 }}>
               {slide.tags.map(tag => (
                 <span key={tag} style={{
-                  fontSize: 11, color: "rgba(201,146,42,0.85)",
-                  border: "1px solid rgba(201,146,42,0.28)",
+                  fontSize: 11, color: "rgba(245,158,11,0.85)",
+                  border: "1px solid rgba(245,158,11,0.28)",
                   borderRadius: 100, padding: "5px 14px",
                   letterSpacing: "0.05em", fontWeight: 400,
                 }}>

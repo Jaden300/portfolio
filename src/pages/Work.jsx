@@ -1,7 +1,8 @@
 import Reveal from "../components/Reveal"
 import PageBanner from "../components/PageBanner"
+import ProjectRotunda from "../components/ProjectRotunda"
 
-const PROJECTS = [
+const _PROJECTS_UNUSED = [
   {
     name:"myojam",
     year:"2024–present",
@@ -88,65 +89,8 @@ export default function Work() {
         sub="One flagship project, multiple ML experiments. All open source, all documented."
       />
       
-      {/* Projects */}
-      <section style={{ padding:"64px 48px" }}>
-        <div style={{ maxWidth:1000, margin:"0 auto", display:"flex", flexDirection:"column", gap:24 }}>
-          {PROJECTS.map((p,i)=>(
-            <Reveal key={p.name} delay={i*0.08}>
-              <div className="hover-lift" style={{ background: p.dark ? "var(--bg-dark)" : "var(--bg-2)", border:`1px solid ${p.dark?"rgba(255,255,255,0.06)":"var(--border)"}`, borderRadius:24, overflow:"hidden", cursor:"none" }}
-                onClick={()=>window.open(p.url,"_blank")}
-              >
-                <div style={{ padding:"40px" }}>
-                  <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", gap:24, flexWrap:"wrap", marginBottom:24 }}>
-                    <div>
-                      <div style={{ display:"flex", gap:10, marginBottom:10 }}>
-                        <span style={{ fontSize:11, fontWeight:600, color:p.statusColor, background:`${p.statusColor}15`, border:`1px solid ${p.statusColor}30`, borderRadius:100, padding:"3px 10px" }}>{p.status}</span>
-                        <span style={{ fontSize:11, color: p.dark?"rgba(255,255,255,0.3)":"var(--text-tertiary)", border:`1px solid ${p.dark?"rgba(255,255,255,0.1)":"var(--border)"}`, borderRadius:100, padding:"3px 10px", fontWeight:300 }}>{p.year}</span>
-                      </div>
-                      <h2 style={{ fontSize:30, fontWeight:800, color: p.dark?"white":"var(--text)", letterSpacing:"-1px", fontFamily:"var(--serif)" }}>{p.name}</h2>
-                    </div>
-                    <div style={{ display:"flex", gap:10 }}>
-                      <a href={p.url} target="_blank" rel="noreferrer" style={{ background:"var(--gold)", color:"#0a0000", borderRadius:100, padding:"9px 20px", fontSize:12, fontWeight:700, cursor:"none", display:"inline-block" }}
-                        onClick={e=>e.stopPropagation()}
-                      >Visit ↗</a>
-                      <a href={p.github} target="_blank" rel="noreferrer" style={{ background:"transparent", color: p.dark?"rgba(255,255,255,0.5)":"var(--text-secondary)", border:`1px solid ${p.dark?"rgba(255,255,255,0.1)":"var(--border)"}`, borderRadius:100, padding:"9px 16px", fontSize:12, fontWeight:300, cursor:"none", display:"inline-block" }}
-                        onClick={e=>e.stopPropagation()}
-                      >GitHub</a>
-                    </div>
-                  </div>
-
-                  <p style={{ fontSize:15, color: p.dark?"rgba(255,255,255,0.5)":"var(--text-secondary)", fontWeight:300, lineHeight:1.8, marginBottom:24, maxWidth:680 }}>{p.summary}</p>
-
-                  <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:8, marginBottom:24 }}>
-                    {p.highlights.map(h=>(
-                      <div key={h} style={{ display:"flex", gap:8, alignItems:"flex-start", fontSize:13, color: p.dark?"rgba(255,255,255,0.4)":"var(--text-secondary)", fontWeight:300, lineHeight:1.6 }}>
-                        <span style={{ color:"var(--gold)", flexShrink:0, marginTop:2 }}> - </span>{h}
-                      </div>
-                    ))}
-                  </div>
-
-                  <div style={{ display:"flex", gap:8, flexWrap:"wrap" }}>
-                    {p.tags.map(tag=>(
-                      <span key={tag} style={{ fontSize:12, color: p.dark?"rgba(255,255,255,0.3)":"var(--text-tertiary)", border:`1px solid ${p.dark?"rgba(255,255,255,0.08)":"var(--border)"}`, borderRadius:100, padding:"4px 12px", fontWeight:300 }}>{tag}</span>
-                    ))}
-                  </div>
-                </div>
-
-                {p.metrics && (
-                  <div style={{ display:"grid", gridTemplateColumns:`repeat(${p.metrics.length},1fr)`, borderTop:`1px solid ${p.dark?"rgba(255,255,255,0.06)":"var(--border)"}` }}>
-                    {p.metrics.map(([val,label],i)=>(
-                      <div key={label} style={{ padding:"20px", textAlign:"center", borderRight: i<p.metrics.length-1?`1px solid ${p.dark?"rgba(255,255,255,0.06)":"var(--border)"}`:""  }}>
-                        <div style={{ fontSize:18, fontWeight:800, color: p.dark?"var(--gold-light)":"var(--gold)", letterSpacing:"-0.5px", fontFamily:"var(--serif)", marginBottom:4 }}>{val}</div>
-                        <div style={{ fontSize:10, color: p.dark?"rgba(255,255,255,0.25)":"var(--text-tertiary)", textTransform:"uppercase", letterSpacing:"0.08em", fontWeight:300 }}>{label}</div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
+      {/* ── Project Rotunda — scroll-driven 3D showcase */}
+      <ProjectRotunda />
 
     {/* Publications & Writing */}
     <section style={{ padding:"0 48px 100px", borderTop:"1px solid var(--border)" }}>
@@ -165,7 +109,7 @@ export default function Work() {
             <div style={{ padding:"36px 40px", display:"grid", gridTemplateColumns:"1fr auto", gap:32, alignItems:"center" }}>
               <div>
                 <div style={{ display:"flex", gap:8, marginBottom:14 }}>
-                  <span style={{ fontSize:11, fontWeight:600, color:"var(--gold-light)", background:"rgba(245,158,11,0.12)", border:"1px solid rgba(245,158,11,0.25)", borderRadius:100, padding:"3px 12px" }}>Technical Report</span>
+                  <span style={{ fontSize:11, fontWeight:600, color:"var(--gold-light)", background:"rgba(245,224,64,0.12)", border:"1px solid rgba(245,224,64,0.25)", borderRadius:100, padding:"3px 12px" }}>Technical Report</span>
                   <span style={{ fontSize:11, color:"rgba(255,255,255,0.3)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:100, padding:"3px 12px", fontWeight:300 }}>April 2026</span>
                   <span style={{ fontSize:11, color:"#10B981", background:"rgba(16,185,129,0.1)", border:"1px solid rgba(16,185,129,0.2)", borderRadius:100, padding:"3px 12px", fontWeight:500 }}>Open Access</span>
                 </div>
@@ -204,7 +148,7 @@ export default function Work() {
                 <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", gap:12 }}>
                   <div style={{ flex:1 }}>
                     <div style={{ display:"flex", gap:8, marginBottom:10, flexWrap:"wrap" }}>
-                      <span style={{ fontSize:10, fontWeight:600, color:"var(--gold)", background:"var(--gold-soft)", border:"1px solid rgba(201,146,42,0.2)", borderRadius:100, padding:"2px 10px", textTransform:"uppercase", letterSpacing:"0.06em" }}>{article.tag}</span>
+                      <span style={{ fontSize:10, fontWeight:600, color:"var(--gold)", background:"var(--gold-soft)", border:"1px solid rgba(245,224,64,0.2)", borderRadius:100, padding:"2px 10px", textTransform:"uppercase", letterSpacing:"0.06em" }}>{article.tag}</span>
                       <span style={{ fontSize:10, color:"var(--text-tertiary)", fontWeight:300 }}>{article.date}</span>
                     </div>
                     <div style={{ fontSize:14, fontWeight:600, color:"var(--text)", lineHeight:1.4 }}>{article.title}</div>

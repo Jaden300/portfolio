@@ -1,35 +1,10 @@
 import { useNavigate } from "react-router-dom"
 import { useEffect, useRef, useState } from "react"
 import Reveal from "../components/Reveal"
-import HeroCanvas3D from "../components/HeroCanvas3D"
+import ChessHero from "../components/ChessHero"
 import RoyalCanvas3D from "../components/RoyalCanvas3D"
+import { Bunny, Chick, Bear, Cat, Frog, Panda } from "../components/Critters"
 
-// Text scramble effect
-function useScramble(text, trigger) {
-  const [display, setDisplay] = useState(text)
-  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-
-  useEffect(() => {
-    if (!trigger) return
-    let frame = 0
-    const len = text.length
-    const iterations = 18
-    const id = setInterval(() => {
-      setDisplay(text.split("").map((char, i) => {
-        if (char === " ") return " "
-        if (frame > i * (iterations / len)) return char
-        return chars[Math.floor(Math.random() * chars.length)]
-      }).join(""))
-      frame++
-      if (frame > iterations) { setDisplay(text); clearInterval(id) }
-    }, 28)
-    return () => clearInterval(id)
-  }, [trigger, text])
-
-  return display
-}
-
-// Animated number
 function Counter({ end, suffix = "", duration = 1200 }) {
   const [val, setVal] = useState(0)
   const ref = useRef(null)
@@ -54,303 +29,301 @@ function Counter({ end, suffix = "", duration = 1200 }) {
   return <span ref={ref}>{val}{suffix}</span>
 }
 
-const MARQUEE_ITEMS = ["Surface EMG","Gesture Classification","Random Forest","Assistive Technology","React","FastAPI","PyQt6","Three.js","Ninapro DB5","Python","Signal Processing","Open Source","myojam"]
+const TOP_SKILLS = ["Python","Machine Learning","React","FastAPI","scikit-learn","Signal Processing","PyQt6","Random Forest","XGBoost","Three.js"]
 
 export default function Home() {
   const navigate = useNavigate()
-  const [loaded, setLoaded] = useState(false)
-  const name1 = useScramble("Jaden", loaded)
-  const name2 = useScramble("Wong.", loaded)
-
-  useEffect(() => {
-    const t = setTimeout(() => setLoaded(true), 300)
-    return () => clearTimeout(t)
-  }, [])
 
   return (
-    <div style={{ background: "var(--bg)", minHeight: "100vh" }}>
+    <div style={{ background: "var(--bg)", minHeight: "100vh", color: "var(--text)" }}>
+
+      {/* ── Fixed hanzi background */}
+      <div style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0, overflow: "hidden" }}>
+        <div style={{ position:"absolute", fontFamily:"'Noto Serif CJK SC','Hiragino Mincho ProN','SimSun',serif", fontWeight:900, lineHeight:1, color:"var(--accent)", fontSize:"72vw", top:"-10%", left:"-18%", transform:"rotate(-6deg)", opacity:0.04, userSelect:"none" }}>黃</div>
+        <div style={{ position:"absolute", fontFamily:"'Noto Serif CJK SC','Hiragino Mincho ProN','SimSun',serif", fontWeight:900, lineHeight:1, color:"var(--accent)", fontSize:"65vw", top:"28%", left:"42%", transform:"rotate(4deg)", opacity:0.038, userSelect:"none" }}>德</div>
+        <div style={{ position:"absolute", fontFamily:"'Noto Serif CJK SC','Hiragino Mincho ProN','SimSun',serif", fontWeight:900, lineHeight:1, color:"var(--accent)", fontSize:"70vw", top:"62%", left:"-8%", transform:"rotate(-3deg)", opacity:0.04, userSelect:"none" }}>治</div>
+      </div>
 
       {/* ── HERO */}
-      <section style={{ minHeight: "100vh", display: "flex", alignItems: "center", position: "relative", overflow: "hidden", padding: "0 48px" }}>
+      <section style={{
+        position: "relative", zIndex: 1,
+        height: "100vh", minHeight: 700,
+        display: "flex", flexDirection: "column", justifyContent: "flex-end",
+        overflow: "visible",
+      }}>
+        <ChessHero />
+        <div style={{ position:"absolute", bottom:0, left:0, right:0, height:200, background:"linear-gradient(to top,rgba(8,10,15,0.92),transparent)", zIndex:2, pointerEvents:"none" }} />
 
-        {/* Background grid */}
-        <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px)", backgroundSize: "64px 64px", pointerEvents: "none" }}/>
+        {/* Bunny — right of name heading */}
+        <Bunny style={{ bottom: 230, right: "7%" }} />
+        {/* Chick — left of name heading */}
+        <Chick style={{ bottom: 230, left: "7%" }} />
 
-        {/* 3D canvas */}
-        <HeroCanvas3D />
-
-        <div style={{ maxWidth: 580, width: "100%", paddingTop: 80, position: "relative", zIndex: 1 }}>
-          {/* Status */}
-          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 48, opacity: loaded ? 1 : 0, transition: "opacity 0.8s ease" }}>
-            <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#10B981", animation: "pulse 2s infinite" }}/>
-            <span style={{ fontSize: 12, color: "var(--text-tertiary)", fontWeight: 300, letterSpacing: "0.12em", textTransform: "uppercase" }}>
-              16 · Toronto, Ontario · Open to opportunities
-            </span>
+        {/* Hero content */}
+        <div style={{ position:"relative", zIndex:3, padding:"0 48px 68px", textAlign:"center", display:"flex", flexDirection:"column", alignItems:"center" }}>
+          <div style={{ display:"inline-flex", alignItems:"center", gap:14, fontSize:11, fontWeight:500, letterSpacing:"0.34em", textTransform:"uppercase", color:"var(--accent)", marginBottom:16 }}>
+            <span style={{ display:"inline-block", width:28, height:1, background:"var(--accent)", opacity:0.7 }} />
+            Engineer · Researcher · Builder
+            <span style={{ display:"inline-block", width:28, height:1, background:"var(--accent)", opacity:0.7 }} />
           </div>
-
-          {/* Name */}
-          <div style={{ marginBottom: 8 }}>
-            <div style={{ fontSize: "clamp(14px,1.8vw,16px)", color: "var(--text-tertiary)", letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: 12, fontFamily: "var(--serif)", opacity: loaded ? 1 : 0, transition: "opacity 1s 0.2s ease" }}>Portfolio of</div>
-            <h1 style={{ fontFamily: "var(--serif)", fontWeight: 700, lineHeight: 0.92, letterSpacing: "-4px", userSelect: "none" }}>
-              <div style={{ fontSize: "clamp(80px,13vw,160px)", color: "var(--text)", opacity: loaded ? 1 : 0, transform: loaded ? "translateY(0)" : "translateY(32px)", transition: "opacity 0.8s 0.1s ease, transform 0.8s 0.1s ease" }}>
-                {name1}
-              </div>
-              <div style={{ fontSize: "clamp(80px,13vw,160px)", opacity: loaded ? 1 : 0, transform: loaded ? "translateY(0)" : "translateY(32px)", transition: "opacity 0.8s 0.2s ease, transform 0.8s 0.2s ease" }} className="gold-text">
-                {name2}
-              </div>
-            </h1>
+          <h1 style={{ fontFamily:"var(--serif)", fontSize:"clamp(60px,8vw,120px)", lineHeight:0.93, letterSpacing:"-0.02em", color:"var(--text)", marginBottom:8 }}>
+            Jaden<br /><em style={{ fontStyle:"italic" }}>Wong.</em>
+          </h1>
+          <div style={{ fontSize:"clamp(20px,2.8vw,34px)", color:"var(--accent)", letterSpacing:"0.22em", marginBottom:18, opacity:0.9, fontFamily:"'Noto Serif CJK SC','Hiragino Mincho ProN',serif" }}>
+            黃 &thinsp; 德 &thinsp; 治
           </div>
-
-          {/* Divider with role */}
-          <div style={{ display: "flex", alignItems: "center", gap: 20, margin: "32px 0 40px", opacity: loaded ? 1 : 0, transition: "opacity 0.8s 0.4s ease" }}>
-            <div style={{ height: 1, width: 60, background: "var(--gold)" }}/>
-            <span style={{ fontSize: 14, color: "var(--text-secondary)", fontWeight: 300, fontFamily: "var(--serif)", fontStyle: "italic", letterSpacing: "0.06em" }}>
-              Engineer · Researcher · Builder
-            </span>
-          </div>
-
-          <p style={{ fontSize: "clamp(14px,1.6vw,17px)", color: "var(--text-secondary)", fontWeight: 300, lineHeight: 1.85, opacity: loaded ? 1 : 0, transition: "opacity 0.8s 0.5s ease", marginBottom: 32 }}>
-            I build at the intersection of machine learning, biomedical signal processing, and human-computer interaction. My flagship project, <strong style={{ fontWeight: 600, color: "var(--text)" }}>myojam</strong>, classifies hand gestures from EMG signals at 84.85% cross-subject accuracy — and has become a full research and education platform with 11 published articles, lesson plans, and interactive demos.
+          <p style={{ fontSize:13, letterSpacing:"0.06em", color:"var(--text-tertiary)", marginBottom:28 }}>
+            ML Engineering · Signal Processing · Toronto, Ontario
           </p>
-
-          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", opacity: loaded ? 1 : 0, transition: "opacity 0.8s 0.6s ease" }}>
-            <button onClick={() => navigate("/work")} style={{
-              background: "var(--text)", color: "var(--bg)",
-              border: "none", borderRadius: 100, padding: "16px 36px",
-              fontSize: 15, fontWeight: 600, cursor: "none",
-              letterSpacing: "0.02em",
-              transition: "background 0.2s, transform 0.2s, box-shadow 0.2s",
-              boxShadow: "0 4px 20px rgba(0,0,0,0.12)"
-            }}
-              onMouseEnter={e => { e.currentTarget.style.background = "var(--gold)"; e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 12px 32px rgba(201,146,42,0.3)" }}
-              onMouseLeave={e => { e.currentTarget.style.background = "var(--text)"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 4px 20px rgba(0,0,0,0.12)" }}
-            >View my work →</button>
-            <button onClick={() => navigate("/contact")} style={{
-              background: "transparent", color: "var(--text)",
-              border: "1.5px solid var(--border-dark)", borderRadius: 100,
-              padding: "16px 36px", fontSize: 15, fontWeight: 400,
-              cursor: "none", letterSpacing: "0.02em",
-              transition: "border-color 0.2s, color 0.2s, transform 0.2s"
-            }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--gold)"; e.currentTarget.style.color = "var(--gold)"; e.currentTarget.style.transform = "translateY(-3px)" }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border-dark)"; e.currentTarget.style.color = "var(--text)"; e.currentTarget.style.transform = "translateY(0)" }}
-            >Get in touch</button>
+          <div style={{ display:"flex", gap:12 }}>
+            <button onClick={() => navigate("/work")} style={{ fontSize:11, fontWeight:500, letterSpacing:"0.2em", textTransform:"uppercase", color:"#080a0f", padding:"11px 22px", border:"1px solid var(--accent)", borderRadius:3, background:"var(--accent)", cursor:"none", fontFamily:"var(--font)", transition:"filter 0.2s" }}
+              onMouseEnter={e => e.currentTarget.style.filter = "brightness(1.1)"}
+              onMouseLeave={e => e.currentTarget.style.filter = "brightness(1)"}
+            >View Work</button>
+            <button onClick={() => navigate("/contact")} style={{ fontSize:11, fontWeight:500, letterSpacing:"0.2em", textTransform:"uppercase", color:"var(--text)", padding:"11px 22px", border:"1px solid var(--border-dark)", borderRadius:3, background:"transparent", cursor:"none", fontFamily:"var(--font)", transition:"border-color 0.2s" }}
+              onMouseEnter={e => e.currentTarget.style.borderColor = "var(--text)"}
+              onMouseLeave={e => e.currentTarget.style.borderColor = "var(--border-dark)"}
+            >Get in Touch</button>
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <div style={{ position: "absolute", bottom: 40, left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: 8, opacity: 0.4 }}>
-          <div style={{ fontSize: 10, color: "var(--text-tertiary)", textTransform: "uppercase", letterSpacing: "0.2em" }}>Scroll</div>
-          <div style={{ width: 1, height: 48, background: "linear-gradient(to bottom, var(--text-tertiary), transparent)" }}/>
+        {/* Scroll hint */}
+        <div style={{ position:"absolute", bottom:24, left:"50%", transform:"translateX(-50%)", zIndex:3, display:"flex", flexDirection:"column", alignItems:"center", gap:8, fontSize:9, letterSpacing:"0.28em", textTransform:"uppercase", color:"var(--text-tertiary)" }}>
+          <div style={{ width:1, height:34, background:"linear-gradient(to bottom, var(--text-tertiary), transparent)", animation:"tickDrop 1.6s 0.4s infinite" }} />
+          <span>Scroll</span>
         </div>
       </section>
 
-      {/* ── MARQUEE */}
-      <div style={{ borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)", padding: "16px 0", overflow: "hidden", background: "var(--bg-2)" }}>
-        <div style={{ display: "flex", animation: "marquee 20s linear infinite", whiteSpace: "nowrap" }}>
-          {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, i) => (
-            <span key={i} style={{ fontSize: 13, color: "var(--text-tertiary)", fontWeight: 300, padding: "0 28px", letterSpacing: "0.06em" }}>
-              {item}
-              <span style={{ color: "var(--gold)", marginLeft: 28 }}>✦</span>
+      {/* ── SKILLS ROW */}
+      <div style={{ borderTop:"1px solid var(--border)", borderBottom:"1px solid var(--border)", padding:"16px 48px", background:"var(--bg-2)", position:"relative", zIndex:1 }}>
+        <div style={{ maxWidth:1000, margin:"0 auto", display:"flex", gap:8, flexWrap:"wrap", justifyContent:"center" }}>
+          {TOP_SKILLS.map(skill => (
+            <span key={skill} style={{ fontSize:11, fontWeight:500, letterSpacing:"0.14em", color:"var(--text-tertiary)", border:"1px solid var(--border)", borderRadius:4, padding:"7px 14px", whiteSpace:"nowrap" }}>
+              {skill}
             </span>
           ))}
         </div>
       </div>
 
-      {/* ── STATS */}
-      <section style={{ padding: "80px 48px" }}>
-        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 2, border: "1px solid var(--border)", borderRadius: "var(--radius)", overflow: "hidden" }}>
-            {[
-              { val: 84, suffix: ".85%", label: "Cross-subject accuracy", sub: "myojam on Ninapro DB5" },
-              { val: 1000, suffix: "+", label: "QA test cases", sub: "Fairly AI co-op" },
-              { val: 11, suffix: "+", label: "Published articles", sub: "myojam education hub" },
-              { val: 60, suffix: "%", label: "Workflow reduction", sub: "Fairly AI evaluation pipeline" },
-            ].map((s, i) => (
-              <div key={i} style={{ padding: "40px 28px", background: "var(--bg-2)", borderRight: i < 3 ? "1px solid var(--border)" : "none", textAlign: "center" }}>
-                <div style={{ fontSize: 36, fontWeight: 800, letterSpacing: "-2px", marginBottom: 8, fontFamily: "var(--serif)", color: "var(--text)" }}>
-                  <Counter end={s.val} suffix={s.suffix} />
-                </div>
-                <div style={{ fontSize: 13, fontWeight: 600, color: "var(--text)", marginBottom: 4 }}>{s.label}</div>
-                <div style={{ fontSize: 11, color: "var(--text-tertiary)", fontWeight: 300, textTransform: "uppercase", letterSpacing: "0.06em" }}>{s.sub}</div>
-              </div>
-            ))}
+      {/* ── BIO — Bear sits next to "About" heading label */}
+      <section style={{ position:"relative", zIndex:1, padding:"100px 48px 100px", display:"grid", gridTemplateColumns:"240px 1fr", gap:"0 80px", borderBottom:"1px solid var(--border)", overflow:"visible" }}>
+        {/* Bear — next to the "About / 01." label (top of left column) */}
+        <Bear style={{ top: 88, left: 256 }} />
+
+        <Reveal>
+          <div style={{ fontSize:10, fontWeight:600, letterSpacing:"0.36em", textTransform:"uppercase", color:"var(--text-tertiary)", paddingTop:6 }}>
+            About
+            <span style={{ display:"block", fontFamily:"var(--serif)", fontSize:56, fontWeight:400, letterSpacing:"-0.02em", color:"rgba(237,234,226,0.05)", lineHeight:1, marginTop:4, fontStyle:"italic" }}>01.</span>
           </div>
-        </div>
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <div>
+            <p style={{ fontSize:17, fontWeight:300, lineHeight:1.82, color:"rgba(237,234,226,0.7)", marginBottom:24 }}>
+              I'm a <strong style={{ color:"var(--text)", fontWeight:500 }}>16-year-old engineer and researcher</strong> from Toronto, Ontario. I build full-stack ML systems, process biomedical signals, and publish educational content — because open access to technology is the point.
+            </p>
+            <p style={{ fontSize:17, fontWeight:300, lineHeight:1.82, color:"rgba(237,234,226,0.7)" }}>
+              My flagship project <strong style={{ color:"var(--text)", fontWeight:500 }}>myojam</strong> achieves 84.85% cross-subject accuracy on EMG gesture classification. Previously AI QA intern at <strong style={{ color:"var(--text)", fontWeight:500 }}>Fairly AI</strong>, designing 1,000+ test cases and reducing evaluation pipeline time by 60%.
+            </p>
+            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(108px,1fr))", gap:10, marginTop:44 }}>
+              {["Python","React","FastAPI","scikit-learn","PyQt6","Three.js","Signal Processing","Random Forest","XGBoost","LIME","NumPy","Vite"].map(chip => (
+                <div key={chip} style={{ display:"flex", alignItems:"center", justifyContent:"center", fontSize:11, fontWeight:500, letterSpacing:"0.14em", color:"var(--text-tertiary)", border:"1px solid var(--border)", borderRadius:4, padding:"10px 8px", transition:"border-color 0.2s, color 0.2s", textAlign:"center", cursor:"default" }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(245,224,64,0.5)"; e.currentTarget.style.color = "var(--text)" }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--text-tertiary)" }}
+                >{chip}</div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
       </section>
 
-      {/* ── RESEARCH HIGHLIGHT */}
-      <section style={{ padding: "64px 48px", background: "var(--bg-dark)", borderTop: "1px solid rgba(255,255,255,0.06)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-          <Reveal>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center" }}>
-              <div>
-                <div style={{ fontSize: 10, color: "rgba(245,158,11,0.6)", textTransform: "uppercase", letterSpacing: "0.25em", marginBottom: 16, fontFamily: "var(--serif)" }}>Research & writing</div>
-                <h2 style={{ fontSize: "clamp(24px,3.5vw,38px)", fontWeight: 700, color: "white", letterSpacing: "-1.5px", fontFamily: "var(--serif)", marginBottom: 16 }}>
-                  1 technical report.<br />11 published articles.
-                </h2>
-                <p style={{ fontSize: 15, color: "rgba(255,255,255,0.45)", fontWeight: 300, lineHeight: 1.8, marginBottom: 28 }}>
-                  A peer-readable technical report on myojam's methodology and eleven articles spanning neuroscience, signal processing, machine learning, hardware, and the ethics of biometric interfaces  -  all openly published on myojam.com.
-                </p>
-                <button onClick={() => window.location.href = "/research"} style={{ background: "linear-gradient(135deg, #C9922A, #E8B84B)", color: "#0a0000", border: "none", borderRadius: 100, padding: "12px 28px", fontSize: 14, fontWeight: 700, cursor: "pointer", transition: "transform 0.2s" }}
-                  onMouseEnter={e => e.currentTarget.style.transform = "scale(1.05)"}
-                  onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
-                >View all research →</button>
+      {/* ── NUMBERS STRIP */}
+      <div style={{ position:"relative", zIndex:1, display:"grid", gridTemplateColumns:"repeat(3,1fr)", borderBottom:"1px solid var(--border)", overflow:"visible" }}>
+        {[
+          { val:84, suffix:".85%", label:"Cross-subject accuracy" },
+          { val:1000, suffix:"+", label:"QA test cases designed" },
+          { val:11, suffix:"+", label:"Published articles" },
+        ].map((s, i) => (
+          <Reveal key={i} delay={i * 0.08}>
+            <div style={{ padding:"44px 48px", borderRight: i < 2 ? "1px solid var(--border)" : "none", position:"relative", overflow:"visible" }}>
+              <div style={{ fontFamily:"var(--serif)", fontSize:"clamp(42px,5vw,80px)", lineHeight:1, color:"var(--text)", letterSpacing:"-0.02em", marginBottom:10 }}>
+                <Counter end={s.val} suffix="" /><span style={{ color:"var(--accent)", fontStyle:"italic" }}>{s.suffix}</span>
               </div>
-              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              <div style={{ fontSize:11, fontWeight:400, letterSpacing:"0.2em", textTransform:"uppercase", color:"var(--text-tertiary)" }}>{s.label}</div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+
+      {/* ── RESEARCH — Cat sits next to "Research" heading */}
+      <section style={{ padding:"100px 48px", borderBottom:"1px solid var(--border)", position:"relative", zIndex:1, overflow:"visible" }}>
+        <div style={{ maxWidth:1000, margin:"0 auto", display:"grid", gridTemplateColumns:"240px 1fr", gap:"0 80px", position:"relative" }}>
+          {/* Cat — next to "Research / 02." label */}
+          <Cat style={{ top: -10, left: 248 }} />
+
+          <Reveal>
+            <div style={{ fontSize:10, fontWeight:600, letterSpacing:"0.36em", textTransform:"uppercase", color:"var(--text-tertiary)", paddingTop:6 }}>
+              Research
+              <span style={{ display:"block", fontFamily:"var(--serif)", fontSize:56, fontWeight:400, letterSpacing:"-0.02em", color:"rgba(237,234,226,0.05)", lineHeight:1, marginTop:4, fontStyle:"italic" }}>02.</span>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <div>
+              <h2 style={{ fontSize:"clamp(26px,3.5vw,40px)", fontWeight:400, color:"var(--text)", letterSpacing:"-1.5px", fontFamily:"var(--serif)", marginBottom:16, lineHeight:1.2 }}>
+                1 technical report.<br />11 published articles.
+              </h2>
+              <p style={{ fontSize:17, fontWeight:300, lineHeight:1.82, color:"rgba(237,234,226,0.7)", marginBottom:32, maxWidth:540 }}>
+                A peer-readable technical report on myojam's methodology and eleven articles spanning neuroscience, signal processing, machine learning, hardware, and the ethics of biometric interfaces — openly published on myojam.com.
+              </p>
+              <div style={{ display:"flex", flexDirection:"column", gap:8, marginBottom:32 }}>
                 {[
                   ["Technical report","myojam: Open-Source Surface EMG Gesture Classification"],
-                  ["Most read article","Phantom limb EMG  -  61 likes"],
-                  ["Newest article","The science of muscle-computer interfaces"],
+                  ["Most read","The ghost in the electrode: phantom limb EMG"],
+                  ["Latest","The science of muscle-computer interfaces"],
                 ].map(([label, title]) => (
-                  <div key={label} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 12, padding: "16px 20px" }}>
-                    <div style={{ fontSize: 10, color: "rgba(245,158,11,0.5)", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 4 }}>{label}</div>
-                    <div style={{ fontSize: 14, color: "rgba(255,255,255,0.65)", fontWeight: 400, lineHeight: 1.4 }}>{title}</div>
+                  <div key={label} style={{ background:"var(--bg-2)", border:"1px solid var(--border)", borderRadius:4, padding:"14px 20px", display:"flex", gap:16, alignItems:"center" }}>
+                    <div style={{ fontSize:10, color:"var(--accent)", textTransform:"uppercase", letterSpacing:"0.12em", flexShrink:0, minWidth:96 }}>{label}</div>
+                    <div style={{ fontSize:13, color:"var(--text-tertiary)", fontWeight:300 }}>{title}</div>
                   </div>
                 ))}
               </div>
+              <button onClick={() => navigate("/research")} style={{ fontSize:11, fontWeight:500, letterSpacing:"0.2em", textTransform:"uppercase", color:"var(--accent)", background:"transparent", border:"1px solid rgba(245,224,64,0.38)", borderRadius:3, padding:"9px 20px", cursor:"none", fontFamily:"var(--font)", transition:"background 0.2s, color 0.2s" }}
+                onMouseEnter={e => { e.currentTarget.style.background = "var(--accent)"; e.currentTarget.style.color = "#080a0f" }}
+                onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "var(--accent)" }}
+              >View all research →</button>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* ── FEATURED WORK */}
-      <section style={{ padding: "0 48px 80px" }}>
-        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+      {/* ── PROJECTS — Frog sits next to "Projects" heading */}
+      <section style={{ padding:"100px 48px", borderBottom:"1px solid var(--border)", position:"relative", zIndex:1, overflow:"visible" }}>
+        <div style={{ maxWidth:1000, margin:"0 auto", display:"grid", gridTemplateColumns:"240px 1fr", gap:"0 80px", position:"relative" }}>
+          {/* Frog — next to "Projects / 03." label */}
+          <Frog style={{ top: -10, left: 248 }} />
+
           <Reveal>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 48 }}>
-              <div>
-                <div style={{ fontSize: 10, color: "var(--gold)", textTransform: "uppercase", letterSpacing: "0.25em", marginBottom: 12, fontFamily: "var(--serif)" }}>Selected work</div>
-                <h2 style={{ fontSize: "clamp(28px,4vw,44px)", fontWeight: 700, color: "var(--text)", letterSpacing: "-1.5px", fontFamily: "var(--serif)" }}>What I've built.</h2>
-              </div>
-              <span onClick={() => window.location.href = "/work"} className="ink-line" style={{ fontSize: 14, color: "var(--text-secondary)", cursor: "none", fontWeight: 300 }}>All projects →</span>
+            <div style={{ fontSize:10, fontWeight:600, letterSpacing:"0.36em", textTransform:"uppercase", color:"var(--text-tertiary)", paddingTop:6 }}>
+              Projects
+              <span style={{ display:"block", fontFamily:"var(--serif)", fontSize:56, fontWeight:400, letterSpacing:"-0.02em", color:"rgba(237,234,226,0.05)", lineHeight:1, marginTop:4, fontStyle:"italic" }}>03.</span>
             </div>
           </Reveal>
 
-          {/* myojam card */}
-          <Reveal delay={0.1}>
-            <div className="hover-lift" style={{ background: "var(--bg-dark)", borderRadius: 24, overflow: "hidden", marginBottom: 16, cursor: "none" }}
-              onClick={() => window.open("https://myojam.com", "_blank")}
-            >
-              <div style={{ padding: "48px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center" }}>
-                <div>
-                  <div style={{ display: "flex", gap: 8, marginBottom: 20 }}>
-                    <span style={{ fontSize: 11, fontWeight: 600, color: "#10B981", background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.3)", borderRadius: 100, padding: "4px 12px", letterSpacing: "0.06em" }}>Active</span>
-                    <span style={{ fontSize: 11, fontWeight: 300, color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 100, padding: "4px 12px" }}>2024–present</span>
+          <div>
+            <Reveal delay={0.1}>
+              <div className="hover-lift" style={{ background:"var(--bg-2)", border:"1px solid var(--border)", borderRadius:4, overflow:"hidden", marginBottom:12, cursor:"none" }}
+                onClick={() => window.open("https://myojam.com","_blank")}
+              >
+                <div style={{ padding:"32px 36px", display:"grid", gridTemplateColumns:"1fr 1fr", gap:36, alignItems:"center" }}>
+                  <div>
+                    <div style={{ display:"flex", gap:8, marginBottom:16 }}>
+                      <span style={{ fontSize:10, fontWeight:500, color:"#10B981", background:"rgba(16,185,129,0.12)", border:"1px solid rgba(16,185,129,0.2)", borderRadius:2, padding:"3px 10px" }}>Active</span>
+                      <span style={{ fontSize:10, fontWeight:300, color:"var(--text-tertiary)", border:"1px solid var(--border)", borderRadius:2, padding:"3px 10px" }}>2024–present</span>
+                    </div>
+                    <h3 style={{ fontSize:28, fontWeight:400, color:"var(--text)", letterSpacing:"-1px", fontFamily:"var(--serif)", marginBottom:12 }}>myojam</h3>
+                    <p style={{ fontSize:14, color:"rgba(237,234,226,0.6)", lineHeight:1.8, fontWeight:300, marginBottom:18 }}>
+                      Open-source EMG gesture classification. 84.85% cross-subject accuracy on Ninapro DB5. Full-stack platform, education hub, and international competition.
+                    </p>
+                    <div style={{ display:"flex", flexWrap:"wrap", gap:6 }}>
+                      {["Python","React","FastAPI","scikit-learn"].map(t => (
+                        <span key={t} style={{ fontSize:11, color:"var(--text-tertiary)", border:"1px solid var(--border)", borderRadius:2, padding:"3px 10px" }}>{t}</span>
+                      ))}
+                    </div>
                   </div>
-                  <h3 style={{ fontSize: 40, fontWeight: 800, color: "white", letterSpacing: "-2px", fontFamily: "var(--serif)", marginBottom: 16 }}>myojam</h3>
-                  <p style={{ fontSize: 15, color: "rgba(255,255,255,0.55)", lineHeight: 1.8, fontWeight: 300, marginBottom: 28 }}>
-                    Open-source EMG gesture classification system. 84.85% cross-subject accuracy on Ninapro DB5. Full-stack platform with education hub, demos, and an international competition.
-                  </p>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-                    {["Python","React","FastAPI","PyQt6","scikit-learn","Three.js"].map(t => (
-                      <span key={t} style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 100, padding: "4px 12px" }}>{t}</span>
+                  <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:8 }}>
+                    {[["84.85%","Accuracy"],["<5ms","Inference"],["16ch","EMG"],["MIT","License"]].map(([v, l]) => (
+                      <div key={l} style={{ background:"var(--bg)", border:"1px solid var(--border)", borderRadius:4, padding:"14px", textAlign:"center" }}>
+                        <div style={{ fontSize:16, fontWeight:400, color:"var(--accent)", fontStyle:"italic", fontFamily:"var(--serif)", marginBottom:4 }}>{v}</div>
+                        <div style={{ fontSize:10, color:"var(--text-tertiary)", textTransform:"uppercase", letterSpacing:"0.1em" }}>{l}</div>
+                      </div>
                     ))}
                   </div>
                 </div>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-                  {[["84.85%","Accuracy"],["<5ms","Inference"],["16ch","EMG input"],["MIT","License"]].map(([val, label]) => (
-                    <div key={label} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 12, padding: "20px", textAlign: "center" }}>
-                      <div style={{ fontSize: 22, fontWeight: 800, color: "var(--gold-light)", letterSpacing: "-1px", fontFamily: "var(--serif)", marginBottom: 4 }}>{val}</div>
-                      <div style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", textTransform: "uppercase", letterSpacing: "0.08em", fontWeight: 300 }}>{label}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Two smaller cards */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-            <Reveal delay={0.15}>
-              <div className="hover-lift" style={{ background: "var(--bg-2)", border: "1px solid var(--border)", borderRadius: 20, padding: "32px", cursor: "none", height: "100%" }}
-                onClick={() => window.open("https://github.com/Jaden300/Unsupervised-Learning", "_blank")}
-              >
-                <div style={{ fontSize: 11, color: "var(--gold)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 12 }}>Machine Learning</div>
-                <h3 style={{ fontSize: 22, fontWeight: 700, color: "var(--text)", letterSpacing: "-0.5px", marginBottom: 12, fontFamily: "var(--serif)" }}>Unsupervised Learning</h3>
-                <p style={{ fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.75, fontWeight: 300, marginBottom: 20 }}>PCA, t-SNE, KMeans, DBSCAN, and more  -  on Spotify and Sign Language MNIST datasets. Full dimensionality reduction and clustering workflow.</p>
-                <span style={{ fontSize: 13, color: "var(--gold)", fontWeight: 500 }}>GitHub ↗</span>
               </div>
             </Reveal>
-            <Reveal delay={0.2}>
-              <div className="hover-lift" style={{ background: "var(--bg-2)", border: "1px solid var(--border)", borderRadius: 20, padding: "32px", cursor: "none", height: "100%" }}
-                onClick={() => window.open("https://github.com/Jaden300/Mobile-Price-Classification", "_blank")}
-              >
-                <div style={{ fontSize: 11, color: "var(--gold)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 12 }}>Machine Learning</div>
-                <h3 style={{ fontSize: 22, fontWeight: 700, color: "var(--text)", letterSpacing: "-0.5px", marginBottom: 12, fontFamily: "var(--serif)" }}>Mobile Price Classification</h3>
-                <p style={{ fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.75, fontWeight: 300, marginBottom: 20 }}>Complete ML workflow: Logistic Regression, KNN, SVM, Random Forest, XGBoost, LIME explainability, and ensemble methods.</p>
-                <span style={{ fontSize: 13, color: "var(--gold)", fontWeight: 500 }}>GitHub ↗</span>
+
+            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12 }}>
+              {[
+                { title:"Unsupervised Learning", sub:"PCA · t-SNE · KMeans · DBSCAN", url:"https://github.com/Jaden300/Unsupervised-Learning" },
+                { title:"Mobile Price Classification", sub:"XGBoost · LIME · GridSearchCV", url:"https://github.com/Jaden300/Mobile-Price-Classification" },
+              ].map((p, i) => (
+                <Reveal key={p.title} delay={0.15 + i * 0.05}>
+                  <div className="hover-lift" style={{ background:"var(--bg-2)", border:"1px solid var(--border)", borderRadius:4, padding:"24px", cursor:"none", height:"100%" }}
+                    onClick={() => window.open(p.url,"_blank")}
+                  >
+                    <div style={{ fontSize:10, color:"var(--accent)", fontWeight:500, textTransform:"uppercase", letterSpacing:"0.14em", marginBottom:10 }}>Machine Learning</div>
+                    <h3 style={{ fontSize:16, fontWeight:400, color:"var(--text)", letterSpacing:"-0.5px", marginBottom:8, fontFamily:"var(--serif)" }}>{p.title}</h3>
+                    <p style={{ fontSize:12, color:"var(--text-tertiary)", fontWeight:300, marginBottom:14 }}>{p.sub}</p>
+                    <span style={{ fontSize:11, color:"var(--accent)", fontWeight:500, letterSpacing:"0.1em" }}>GitHub ↗</span>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+            <Reveal delay={0.25}>
+              <div style={{ marginTop:18, textAlign:"right" }}>
+                <span onClick={() => navigate("/work")} className="ink-line" style={{ fontSize:12, color:"var(--text-tertiary)", cursor:"none", letterSpacing:"0.1em" }}>All projects →</span>
               </div>
             </Reveal>
           </div>
         </div>
       </section>
 
-      {/* ── EXPERIENCE STRIP */}
-      <section style={{ background: "var(--bg-2)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)", padding: "64px 48px" }}>
-        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+      {/* ── EXPERIENCE */}
+      <section style={{ padding:"100px 48px", borderBottom:"1px solid var(--border)", position:"relative", zIndex:1 }}>
+        <div style={{ maxWidth:1000, margin:"0 auto", display:"grid", gridTemplateColumns:"240px 1fr", gap:"0 80px" }}>
           <Reveal>
-            <div style={{ display: "flex", alignItems: "center", gap: 32, flexWrap: "wrap" }}>
-              <div style={{ minWidth: 200 }}>
-                <div style={{ fontSize: 10, color: "var(--gold)", textTransform: "uppercase", letterSpacing: "0.25em", marginBottom: 8, fontFamily: "var(--serif)" }}>Experience</div>
-                <div style={{ fontSize: 20, fontWeight: 700, color: "var(--text)", letterSpacing: "-0.5px", fontFamily: "var(--serif)" }}>Fairly AI</div>
-                <div style={{ fontSize: 13, color: "var(--text-tertiary)", fontWeight: 300 }}>AI Intern · Sept 2025 – Jan 2026</div>
+            <div style={{ fontSize:10, fontWeight:600, letterSpacing:"0.36em", textTransform:"uppercase", color:"var(--text-tertiary)", paddingTop:6 }}>
+              Experience
+              <span style={{ display:"block", fontFamily:"var(--serif)", fontSize:56, fontWeight:400, letterSpacing:"-0.02em", color:"rgba(237,234,226,0.05)", lineHeight:1, marginTop:4, fontStyle:"italic" }}>04.</span>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div>
+              <div style={{ marginBottom:24 }}>
+                <div style={{ fontSize:22, fontWeight:400, color:"var(--text)", fontFamily:"var(--serif)", letterSpacing:"-0.5px", marginBottom:4 }}>Fairly AI</div>
+                <div style={{ fontSize:12, color:"var(--accent)", fontWeight:400, letterSpacing:"0.04em", marginBottom:2 }}>AI Intern — QA Assistant</div>
+                <div style={{ fontSize:11, color:"var(--text-tertiary)", fontWeight:300, letterSpacing:"0.06em" }}>Sept 2025 – Jan 2026 · Kitchener, ON</div>
               </div>
-              <div style={{ width: 1, height: 60, background: "var(--border)", flexShrink: 0 }}/>
-              <div style={{ flex: 1, display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
-                {[
-                  ["1,000+", "Test cases designed"],
-                  ["60%", "Workflow time reduced"],
-                  ["70%", "Classification improvement"],
-                ].map(([val, label]) => (
-                  <div key={label}>
-                    <div style={{ fontSize: 24, fontWeight: 800, color: "var(--text)", letterSpacing: "-1px", fontFamily: "var(--serif)", marginBottom: 4 }}>{val}</div>
-                    <div style={{ fontSize: 12, color: "var(--text-tertiary)", fontWeight: 300 }}>{label}</div>
+              <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:12, marginBottom:24 }}>
+                {[["1,000+","test cases"],["60%","workflow reduction"],["70%","classification gain"]].map(([v, l]) => (
+                  <div key={l} style={{ padding:"18px", border:"1px solid var(--border)", borderRadius:4, background:"var(--bg-2)" }}>
+                    <div style={{ fontSize:22, fontWeight:400, color:"var(--text)", fontFamily:"var(--serif)", letterSpacing:"-1px", marginBottom:4 }}>{v}</div>
+                    <div style={{ fontSize:10, color:"var(--text-tertiary)", fontWeight:300, textTransform:"uppercase", letterSpacing:"0.1em" }}>{l}</div>
                   </div>
                 ))}
               </div>
+              <p style={{ fontSize:14, fontWeight:300, lineHeight:1.82, color:"rgba(237,234,226,0.6)" }}>
+                Designed and executed 1,000+ test cases to investigate model behaviour. Led a benchmarking study across 12+ scenarios over 15 cycles, improving classification by 70%. Developed data workflows reducing project time by 60%.
+              </p>
             </div>
           </Reveal>
         </div>
       </section>
 
       {/* ── ROYAL 3D SHOWCASE */}
-      <section style={{ height: "90vh", position: "relative", overflow: "hidden", background: "var(--bg-dark)", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+      <section style={{ height:"90vh", position:"relative", overflow:"hidden", borderTop:"1px solid var(--border)", zIndex:1 }}>
         <RoyalCanvas3D />
-
-        {/* Subtle ambient text — barely visible, lets the 3D be the star */}
-        <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end", padding: "0 0 52px", pointerEvents: "none" }}>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
-            <div style={{ fontSize: 10, color: "rgba(201,146,42,0.35)", textTransform: "uppercase", letterSpacing: "0.3em" }}>Scroll to reveal</div>
-            <div style={{ width: 1, height: 36, background: "linear-gradient(to bottom, rgba(201,146,42,0.3), transparent)" }}/>
+        <div style={{ position:"absolute", inset:0, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"flex-end", padding:"0 0 48px", pointerEvents:"none" }}>
+          <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:10 }}>
+            <div style={{ fontSize:9, color:"rgba(245,224,64,0.3)", textTransform:"uppercase", letterSpacing:"0.3em" }}>Scroll to reveal</div>
+            <div style={{ width:1, height:28, background:"linear-gradient(to bottom, rgba(245,224,64,0.25), transparent)" }} />
           </div>
         </div>
       </section>
 
-      {/* ── CTA */}
-      <section style={{ padding: "100px 48px" }}>
-        <div style={{ maxWidth: 1000, margin: "0 auto", textAlign: "center" }}>
-          <Reveal>
-            <div style={{ fontSize: 10, color: "var(--gold)", textTransform: "uppercase", letterSpacing: "0.25em", marginBottom: 24, fontFamily: "var(--serif)" }}>Let's work together</div>
-            <h2 style={{ fontSize: "clamp(36px,6vw,72px)", fontWeight: 800, color: "var(--text)", letterSpacing: "-3px", lineHeight: 1.0, marginBottom: 24, fontFamily: "var(--serif)" }}>
-              Open to<br /><span className="gold-text">opportunities.</span>
-            </h2>
-            <p style={{ fontSize: 18, color: "var(--text-secondary)", fontWeight: 300, lineHeight: 1.75, maxWidth: 480, margin: "0 auto 48px" }}>
-              Particularly interested in ML research, biomedical engineering, and full-stack roles at companies building technology that matters.
-            </p>
-            <button onClick={() => window.location.href = "/contact"} style={{
-              background: "var(--text)", color: "var(--bg)", border: "none",
-              borderRadius: 100, padding: "18px 48px", fontSize: 16, fontWeight: 600,
-              cursor: "none", letterSpacing: "0.02em",
-              boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
-              transition: "background 0.2s, transform 0.2s, box-shadow 0.2s"
-            }}
-              onMouseEnter={e => { e.currentTarget.style.background = "var(--gold)"; e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 16px 48px rgba(201,146,42,0.3)" }}
-              onMouseLeave={e => { e.currentTarget.style.background = "var(--text)"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 8px 32px rgba(0,0,0,0.15)" }}
-            >Get in touch →</button>
-          </Reveal>
-        </div>
-      </section>
+      {/* ── FOOTER — Panda peeks above it */}
+      <footer style={{ position:"relative", zIndex:1, padding:"28px 48px", display:"flex", justifyContent:"space-between", alignItems:"center", borderTop:"1px solid var(--border)", fontSize:11, letterSpacing:"0.16em", color:"var(--text-tertiary)", overflow:"visible" }}>
+        {/* Panda — peeking above the footer bar */}
+        <Panda style={{ top: -54, left: "50%", transform: "translateX(-50%)" }} />
+
+        <span>© 2026 Jaden Wong &nbsp;·&nbsp; 黃德治</span>
+        <span>Toronto, Ontario</span>
+        <a href="mailto:jn.wong.enterprise@gmail.com" style={{ color:"var(--text-tertiary)", textDecoration:"none", transition:"color 0.2s" }}
+          onMouseEnter={e => e.currentTarget.style.color = "var(--text)"}
+          onMouseLeave={e => e.currentTarget.style.color = "var(--text-tertiary)"}
+        >jn.wong.enterprise@gmail.com</a>
+      </footer>
 
     </div>
   )

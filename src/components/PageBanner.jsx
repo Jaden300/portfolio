@@ -33,7 +33,7 @@ export default function PageBanner({ label, title, accent, sub }) {
           const y = H/2 + Math.sin(x * wave.freq + phase + wave.offset) * wave.amp
           x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y)
         }
-        ctx.strokeStyle = `rgba(201,146,42,${wave.alpha})`
+        ctx.strokeStyle = `rgba(245,224,64,${wave.alpha})`
         ctx.lineWidth = wave.width
         ctx.stroke()
       })
@@ -44,7 +44,7 @@ export default function PageBanner({ label, title, accent, sub }) {
         const y = H/2 + Math.sin(x * 0.008 + phase) * H * 0.09
         ctx.beginPath()
         ctx.arc(x, y, 2.5, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(201,146,42,0.5)`
+        ctx.fillStyle = `rgba(245,224,64,0.5)`
         ctx.fill()
       }
 
@@ -66,7 +66,7 @@ export default function PageBanner({ label, title, accent, sub }) {
       <div style={{ position:"absolute", right:0, top:0, bottom:0, width:"30%", background:"linear-gradient(to left, var(--bg-2), transparent)", pointerEvents:"none" }}/>
       <div style={{ position:"absolute", right:"8%", top:"50%", transform:"translateY(-50%)", pointerEvents:"none" }}>
         {[180,120,70].map((r,i) => (
-          <div key={r} style={{ position:"absolute", top:"50%", left:"50%", width:r, height:r, borderRadius:"50%", border:`1px solid rgba(201,146,42,${0.08+i*0.06})`, transform:"translate(-50%,-50%)" }}/>
+          <div key={r} style={{ position:"absolute", top:"50%", left:"50%", width:r, height:r, borderRadius:"50%", border:`1px solid rgba(245,224,64,${0.08+i*0.06})`, transform:"translate(-50%,-50%)" }}/>
         ))}
         <div style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", width:8, height:8, borderRadius:"50%", background:"var(--gold)", opacity:0.6 }}/>
       </div>

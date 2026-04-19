@@ -153,7 +153,7 @@ export default function Research() {
             <a href={PAPER.url} target="_blank" rel="noreferrer" className="hover-lift" style={{ display: "block", background: "var(--bg-dark)", borderRadius: 24, overflow: "hidden" }}>
               <div style={{ padding: "48px" }}>
                 <div style={{ display: "flex", gap: 10, marginBottom: 20, flexWrap: "wrap" }}>
-                  <span style={{ fontSize: 11, fontWeight: 600, color: "var(--gold-light)", background: "rgba(245,158,11,0.1)", border: "1px solid rgba(245,158,11,0.25)", borderRadius: 100, padding: "4px 12px" }}>{PAPER.type}</span>
+                  <span style={{ fontSize: 11, fontWeight: 600, color: "var(--gold-light)", background: "rgba(245,224,64,0.1)", border: "1px solid rgba(245,224,64,0.25)", borderRadius: 100, padding: "4px 12px" }}>{PAPER.type}</span>
                   <span style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 100, padding: "4px 12px", fontWeight: 300 }}>{PAPER.date}</span>
                   <span style={{ fontSize: 11, color: "#10B981", background: "rgba(16,185,129,0.08)", border: "1px solid rgba(16,185,129,0.2)", borderRadius: 100, padding: "4px 12px", fontWeight: 500 }}>Open Access</span>
                   <span style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 100, padding: "4px 12px", fontWeight: 300 }}>MIT Licence</span>
@@ -163,8 +163,8 @@ export default function Research() {
                   {PAPER.title}
                 </h2>
 
-                <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderLeft: "3px solid rgba(245,158,11,0.5)", borderRadius: "0 10px 10px 0", padding: "18px 22px", marginBottom: 24 }}>
-                  <div style={{ fontSize: 10, color: "rgba(245,158,11,0.6)", textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: 8 }}>Abstract</div>
+                <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderLeft: "3px solid rgba(245,224,64,0.5)", borderRadius: "0 10px 10px 0", padding: "18px 22px", marginBottom: 24 }}>
+                  <div style={{ fontSize: 10, color: "rgba(245,224,64,0.6)", textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: 8 }}>Abstract</div>
                   <p style={{ fontSize: 13, color: "rgba(255,255,255,0.45)", lineHeight: 1.85, fontWeight: 300, margin: 0, fontFamily: "var(--serif)", fontStyle: "italic" }}>{PAPER.abstract}</p>
                 </div>
 
@@ -248,7 +248,7 @@ export default function Research() {
               <Reveal key={r.title} delay={i * 0.08}>
                 <a href={r.url} target="_blank" rel="noreferrer" className="hover-lift" style={{ display: "block", background: "var(--bg-2)", border: "1px solid var(--border)", borderRadius: 18, padding: "28px", height: "100%" }}>
                   <div style={{ display: "flex", gap: 8, marginBottom: 14, flexWrap: "wrap" }}>
-                    <span style={{ fontSize: 10, fontWeight: 600, color: "var(--gold)", background: "var(--gold-soft)", border: "1px solid rgba(201,146,42,0.2)", borderRadius: 100, padding: "3px 10px", textTransform: "uppercase", letterSpacing: "0.06em" }}>{r.type}</span>
+                    <span style={{ fontSize: 10, fontWeight: 600, color: "var(--gold)", background: "var(--gold-soft)", border: "1px solid rgba(245,224,64,0.2)", borderRadius: 100, padding: "3px 10px", textTransform: "uppercase", letterSpacing: "0.06em" }}>{r.type}</span>
                     <span style={{ fontSize: 10, color: "var(--text-tertiary)", border: "1px solid var(--border)", borderRadius: 100, padding: "3px 10px", fontWeight: 300 }}>{r.duration}</span>
                   </div>
                   <div style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", marginBottom: 8, lineHeight: 1.3, fontFamily: "var(--serif)" }}>{r.title}</div>

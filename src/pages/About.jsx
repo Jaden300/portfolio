@@ -84,7 +84,7 @@ export default function About() {
       {/* ── Rotunda teaser */}
       <section style={{ background:"var(--bg-dark)", borderTop:"1px solid rgba(255,255,255,0.05)", padding:"80px 48px", textAlign:"center" }}>
         <Reveal>
-          <div style={{ fontSize:10, color:"rgba(201,146,42,0.45)", textTransform:"uppercase", letterSpacing:"0.3em", marginBottom:20, fontFamily:"var(--serif)" }}>Artefact Nº 001</div>
+          <div style={{ fontSize:10, color:"rgba(245,224,64,0.45)", textTransform:"uppercase", letterSpacing:"0.3em", marginBottom:20, fontFamily:"var(--serif)" }}>Artefact Nº 001</div>
           <h2 style={{ fontSize:"clamp(28px,4vw,44px)", fontWeight:300, fontStyle:"italic", color:"rgba(239,230,209,0.9)", letterSpacing:"-1px", fontFamily:"'Fraunces', Georgia, serif", marginBottom:16 }}>Rotunda</h2>
           <p style={{ fontSize:15, color:"rgba(239,230,209,0.4)", fontWeight:300, lineHeight:1.8, maxWidth:420, margin:"0 auto 36px", fontFamily:"var(--serif)" }}>
             A scroll-driven icosahedron that passes through five material stages — Stone, Obsidian, Gold, Glass, Wire.
