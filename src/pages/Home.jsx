@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react"
 import Reveal from "../components/Reveal"
 import ChessHero from "../components/ChessHero"
 import RoyalCanvas3D from "../components/RoyalCanvas3D"
+import ParticleWarp from "../components/ParticleWarp"
 import { Bunny, Chick, Bear, Cat, Frog, Panda } from "../components/Critters"
 
 function Counter({ end, suffix = "", duration = 1200 }) {
@@ -33,15 +34,28 @@ const TOP_SKILLS = ["Python","Machine Learning","React","FastAPI","scikit-learn"
 
 export default function Home() {
   const navigate = useNavigate()
+  const hz0 = useRef(null), hz1 = useRef(null), hz2 = useRef(null)
+
+  useEffect(() => {
+    const handle = () => {
+      const y = window.scrollY
+      if (hz0.current) hz0.current.style.transform = `rotate(-6deg) translateY(${y * 0.14}px)`
+      if (hz1.current) hz1.current.style.transform = `rotate(4deg) translateY(${y * 0.07}px)`
+      if (hz2.current) hz2.current.style.transform = `rotate(-3deg) translateY(${-y * 0.05}px)`
+    }
+    window.addEventListener("scroll", handle, { passive: true })
+    return () => window.removeEventListener("scroll", handle)
+  }, [])
 
   return (
     <div style={{ background: "var(--bg)", minHeight: "100vh", color: "var(--text)" }}>
+      <ParticleWarp />
 
-      {/* ── Fixed hanzi background */}
+      {/* ── Parallax hanzi background */}
       <div style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0, overflow: "hidden" }}>
-        <div style={{ position:"absolute", fontFamily:"'Noto Serif CJK SC','Hiragino Mincho ProN','SimSun',serif", fontWeight:900, lineHeight:1, color:"var(--accent)", fontSize:"72vw", top:"-10%", left:"-18%", transform:"rotate(-6deg)", opacity:0.04, userSelect:"none" }}>黃</div>
-        <div style={{ position:"absolute", fontFamily:"'Noto Serif CJK SC','Hiragino Mincho ProN','SimSun',serif", fontWeight:900, lineHeight:1, color:"var(--accent)", fontSize:"65vw", top:"28%", left:"42%", transform:"rotate(4deg)", opacity:0.038, userSelect:"none" }}>德</div>
-        <div style={{ position:"absolute", fontFamily:"'Noto Serif CJK SC','Hiragino Mincho ProN','SimSun',serif", fontWeight:900, lineHeight:1, color:"var(--accent)", fontSize:"70vw", top:"62%", left:"-8%", transform:"rotate(-3deg)", opacity:0.04, userSelect:"none" }}>治</div>
+        <div ref={hz0} style={{ position:"absolute", fontFamily:"'Noto Serif CJK SC','Hiragino Mincho ProN','SimSun',serif", fontWeight:900, lineHeight:1, color:"var(--accent)", fontSize:"72vw", top:"-10%", left:"-18%", transform:"rotate(-6deg)", opacity:0.04, userSelect:"none" }}>黃</div>
+        <div ref={hz1} style={{ position:"absolute", fontFamily:"'Noto Serif CJK SC','Hiragino Mincho ProN','SimSun',serif", fontWeight:900, lineHeight:1, color:"var(--accent)", fontSize:"65vw", top:"28%", left:"42%", transform:"rotate(4deg)", opacity:0.038, userSelect:"none" }}>德</div>
+        <div ref={hz2} style={{ position:"absolute", fontFamily:"'Noto Serif CJK SC','Hiragino Mincho ProN','SimSun',serif", fontWeight:900, lineHeight:1, color:"var(--accent)", fontSize:"70vw", top:"62%", left:"-8%", transform:"rotate(-3deg)", opacity:0.04, userSelect:"none" }}>治</div>
       </div>
 
       {/* ── HERO */}
@@ -61,26 +75,26 @@ export default function Home() {
 
         {/* Hero content */}
         <div style={{ position:"relative", zIndex:3, padding:"0 48px 68px", textAlign:"center", display:"flex", flexDirection:"column", alignItems:"center" }}>
-          <div style={{ display:"inline-flex", alignItems:"center", gap:14, fontSize:11, fontWeight:500, letterSpacing:"0.34em", textTransform:"uppercase", color:"var(--accent)", marginBottom:16 }}>
+          <div style={{ display:"inline-flex", alignItems:"center", gap:14, fontSize:11, fontWeight:500, letterSpacing:"0.34em", textTransform:"uppercase", color:"var(--accent)", marginBottom:16, animation:"heroLabel 0.9s cubic-bezier(0.16,1,0.3,1) 0.2s both" }}>
             <span style={{ display:"inline-block", width:28, height:1, background:"var(--accent)", opacity:0.7 }} />
             Engineer · Researcher · Builder
             <span style={{ display:"inline-block", width:28, height:1, background:"var(--accent)", opacity:0.7 }} />
           </div>
-          <h1 style={{ fontFamily:"var(--serif)", fontSize:"clamp(60px,8vw,120px)", lineHeight:0.93, letterSpacing:"-0.02em", color:"var(--text)", marginBottom:8 }}>
+          <h1 style={{ fontFamily:"var(--serif)", fontSize:"clamp(60px,8vw,120px)", lineHeight:0.93, letterSpacing:"-0.02em", color:"var(--text)", marginBottom:8, animation:"heroName 1.1s cubic-bezier(0.16,1,0.3,1) 0.38s both" }}>
             Jaden<br /><em style={{ fontStyle:"italic" }}>Wong.</em>
           </h1>
-          <div style={{ fontSize:"clamp(20px,2.8vw,34px)", color:"var(--accent)", letterSpacing:"0.22em", marginBottom:18, opacity:0.9, fontFamily:"'Noto Serif CJK SC','Hiragino Mincho ProN',serif" }}>
+          <div style={{ fontSize:"clamp(20px,2.8vw,34px)", color:"var(--accent)", letterSpacing:"0.22em", marginBottom:18, opacity:0.9, fontFamily:"'Noto Serif CJK SC','Hiragino Mincho ProN',serif", animation:"heroSub 1s cubic-bezier(0.16,1,0.3,1) 0.6s both" }}>
             黃 &thinsp; 德 &thinsp; 治
           </div>
-          <p style={{ fontSize:13, letterSpacing:"0.06em", color:"var(--text-tertiary)", marginBottom:28 }}>
+          <p style={{ fontSize:13, letterSpacing:"0.06em", color:"var(--text-tertiary)", marginBottom:28, animation:"heroFade 0.9s ease 0.85s both" }}>
             ML Engineering · Signal Processing · Toronto, Ontario
           </p>
-          <div style={{ display:"flex", gap:12 }}>
-            <button onClick={() => navigate("/work")} style={{ fontSize:11, fontWeight:500, letterSpacing:"0.2em", textTransform:"uppercase", color:"#080a0f", padding:"11px 22px", border:"1px solid var(--accent)", borderRadius:3, background:"var(--accent)", cursor:"none", fontFamily:"var(--font)", transition:"filter 0.2s" }}
+          <div style={{ display:"flex", gap:12, animation:"heroFade 0.9s ease 1.05s both" }}>
+            <button onClick={() => navigate("/work")} style={{ fontSize:11, fontWeight:500, letterSpacing:"0.2em", textTransform:"uppercase", color:"#080a0f", padding:"11px 22px", border:"1px solid var(--accent)", borderRadius:3, background:"var(--accent)", cursor: "pointer", fontFamily:"var(--font)", transition:"filter 0.2s" }}
               onMouseEnter={e => e.currentTarget.style.filter = "brightness(1.1)"}
               onMouseLeave={e => e.currentTarget.style.filter = "brightness(1)"}
             >View Work</button>
-            <button onClick={() => navigate("/contact")} style={{ fontSize:11, fontWeight:500, letterSpacing:"0.2em", textTransform:"uppercase", color:"var(--text)", padding:"11px 22px", border:"1px solid var(--border-dark)", borderRadius:3, background:"transparent", cursor:"none", fontFamily:"var(--font)", transition:"border-color 0.2s" }}
+            <button onClick={() => navigate("/contact")} style={{ fontSize:11, fontWeight:500, letterSpacing:"0.2em", textTransform:"uppercase", color:"var(--text)", padding:"11px 22px", border:"1px solid var(--border-dark)", borderRadius:3, background:"transparent", cursor: "pointer", fontFamily:"var(--font)", transition:"border-color 0.2s" }}
               onMouseEnter={e => e.currentTarget.style.borderColor = "var(--text)"}
               onMouseLeave={e => e.currentTarget.style.borderColor = "var(--border-dark)"}
             >Get in Touch</button>
@@ -117,7 +131,7 @@ export default function Home() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.1}>
+        <Reveal delay={0.1} grand>
           <div>
             <p style={{ fontSize:17, fontWeight:300, lineHeight:1.82, color:"rgba(237,234,226,0.7)", marginBottom:24 }}>
               I'm a <strong style={{ color:"var(--text)", fontWeight:500 }}>16-year-old engineer and researcher</strong> from Toronto, Ontario. I build full-stack ML systems, process biomedical signals, and publish educational content — because open access to technology is the point.
@@ -155,6 +169,17 @@ export default function Home() {
         ))}
       </div>
 
+      {/* ── ROYAL 3D SHOWCASE */}
+      <section style={{ height:"90vh", position:"relative", overflow:"hidden", borderTop:"1px solid var(--border)", zIndex:1 }}>
+        <RoyalCanvas3D />
+        <div style={{ position:"absolute", inset:0, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"flex-end", padding:"0 0 48px", pointerEvents:"none" }}>
+          <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:10 }}>
+            <div style={{ fontSize:9, color:"rgba(245,224,64,0.3)", textTransform:"uppercase", letterSpacing:"0.3em" }}>Scroll to reveal</div>
+            <div style={{ width:1, height:28, background:"linear-gradient(to bottom, rgba(245,224,64,0.25), transparent)" }} />
+          </div>
+        </div>
+      </section>
+
       {/* ── RESEARCH — Cat sits next to "Research" heading */}
       <section style={{ padding:"100px 48px", borderBottom:"1px solid var(--border)", position:"relative", zIndex:1, overflow:"visible" }}>
         <div style={{ maxWidth:1000, margin:"0 auto", display:"grid", gridTemplateColumns:"240px 1fr", gap:"0 80px", position:"relative" }}>
@@ -168,7 +193,7 @@ export default function Home() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.1}>
+          <Reveal delay={0.1} grand>
             <div>
               <h2 style={{ fontSize:"clamp(26px,3.5vw,40px)", fontWeight:400, color:"var(--text)", letterSpacing:"-1.5px", fontFamily:"var(--serif)", marginBottom:16, lineHeight:1.2 }}>
                 1 technical report.<br />11 published articles.
@@ -188,7 +213,7 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <button onClick={() => navigate("/research")} style={{ fontSize:11, fontWeight:500, letterSpacing:"0.2em", textTransform:"uppercase", color:"var(--accent)", background:"transparent", border:"1px solid rgba(245,224,64,0.38)", borderRadius:3, padding:"9px 20px", cursor:"none", fontFamily:"var(--font)", transition:"background 0.2s, color 0.2s" }}
+              <button onClick={() => navigate("/research")} style={{ fontSize:11, fontWeight:500, letterSpacing:"0.2em", textTransform:"uppercase", color:"var(--accent)", background:"transparent", border:"1px solid rgba(245,224,64,0.38)", borderRadius:3, padding:"9px 20px", cursor: "pointer", fontFamily:"var(--font)", transition:"background 0.2s, color 0.2s" }}
                 onMouseEnter={e => { e.currentTarget.style.background = "var(--accent)"; e.currentTarget.style.color = "#080a0f" }}
                 onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "var(--accent)" }}
               >View all research →</button>
@@ -212,7 +237,7 @@ export default function Home() {
 
           <div>
             <Reveal delay={0.1}>
-              <div className="hover-lift" style={{ background:"var(--bg-2)", border:"1px solid var(--border)", borderRadius:4, overflow:"hidden", marginBottom:12, cursor:"none" }}
+              <div className="hover-lift" style={{ background:"var(--bg-2)", border:"1px solid var(--border)", borderRadius:4, overflow:"hidden", marginBottom:12, cursor: "pointer" }}
                 onClick={() => window.open("https://myojam.com","_blank")}
               >
                 <div style={{ padding:"32px 36px", display:"grid", gridTemplateColumns:"1fr 1fr", gap:36, alignItems:"center" }}>
@@ -249,7 +274,7 @@ export default function Home() {
                 { title:"Mobile Price Classification", sub:"XGBoost · LIME · GridSearchCV", url:"https://github.com/Jaden300/Mobile-Price-Classification" },
               ].map((p, i) => (
                 <Reveal key={p.title} delay={0.15 + i * 0.05}>
-                  <div className="hover-lift" style={{ background:"var(--bg-2)", border:"1px solid var(--border)", borderRadius:4, padding:"24px", cursor:"none", height:"100%" }}
+                  <div className="hover-lift" style={{ background:"var(--bg-2)", border:"1px solid var(--border)", borderRadius:4, padding:"24px", cursor: "pointer", height:"100%" }}
                     onClick={() => window.open(p.url,"_blank")}
                   >
                     <div style={{ fontSize:10, color:"var(--accent)", fontWeight:500, textTransform:"uppercase", letterSpacing:"0.14em", marginBottom:10 }}>Machine Learning</div>
@@ -262,7 +287,7 @@ export default function Home() {
             </div>
             <Reveal delay={0.25}>
               <div style={{ marginTop:18, textAlign:"right" }}>
-                <span onClick={() => navigate("/work")} className="ink-line" style={{ fontSize:12, color:"var(--text-tertiary)", cursor:"none", letterSpacing:"0.1em" }}>All projects →</span>
+                <span onClick={() => navigate("/work")} className="ink-line" style={{ fontSize:12, color:"var(--text-tertiary)", cursor: "pointer", letterSpacing:"0.1em" }}>All projects →</span>
               </div>
             </Reveal>
           </div>
@@ -298,17 +323,6 @@ export default function Home() {
               </p>
             </div>
           </Reveal>
-        </div>
-      </section>
-
-      {/* ── ROYAL 3D SHOWCASE */}
-      <section style={{ height:"90vh", position:"relative", overflow:"hidden", borderTop:"1px solid var(--border)", zIndex:1 }}>
-        <RoyalCanvas3D />
-        <div style={{ position:"absolute", inset:0, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"flex-end", padding:"0 0 48px", pointerEvents:"none" }}>
-          <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:10 }}>
-            <div style={{ fontSize:9, color:"rgba(245,224,64,0.3)", textTransform:"uppercase", letterSpacing:"0.3em" }}>Scroll to reveal</div>
-            <div style={{ width:1, height:28, background:"linear-gradient(to bottom, rgba(245,224,64,0.25), transparent)" }} />
-          </div>
         </div>
       </section>
 

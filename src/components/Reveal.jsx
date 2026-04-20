@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 
-export default function Reveal({ children, delay = 0, style = {} }) {
+export default function Reveal({ children, delay = 0, style = {}, grand = false }) {
   const ref = useRef(null)
   useEffect(() => {
     const el = ref.current
@@ -10,9 +10,9 @@ export default function Reveal({ children, delay = 0, style = {} }) {
         setTimeout(() => el.classList.add("visible"), delay * 1000)
         obs.disconnect()
       }
-    }, { threshold: 0.12 })
+    }, { threshold: 0.08 })
     obs.observe(el)
     return () => obs.disconnect()
   }, [delay])
-  return <div ref={ref} className="reveal" style={style}>{children}</div>
+  return <div ref={ref} className={grand ? "reveal-grand" : "reveal"} style={style}>{children}</div>
 }

@@ -14,7 +14,7 @@ export default function Footer() {
             ["GitHub", "https://github.com/Jaden300"],
             ["LinkedIn", "https://www.linkedin.com/in/jaden-wong09/"],
           ].map(([label, href]) => (
-            <a key={label} href={href} target="_blank" rel="noreferrer" className="ink-line" style={{ fontSize: 13, color: "var(--text-tertiary)", fontWeight: 300, cursor: "none", transition: "color 0.2s" }}
+            <a key={label} href={href} target="_blank" rel="noreferrer" className="ink-line" style={{ fontSize: 13, color: "var(--text-tertiary)", fontWeight: 300, cursor: "pointer", transition: "color 0.2s" }}
               onMouseEnter={e => e.currentTarget.style.color = "var(--gold)"}
               onMouseLeave={e => e.currentTarget.style.color = "var(--text-tertiary)"}
             >{label}</a>

@@ -5,42 +5,36 @@ import * as THREE from "three"
 const SLIDES = [
   {
     piece: "king",
-    label: "THE KING",
     title: "myojam",
     body: "Flagship open-source project. 84.85% cross-subject EMG gesture accuracy on Ninapro DB5 — built from scratch with public data alone.",
     tags: ["Python", "React", "FastAPI", "scikit-learn", "Three.js"],
   },
   {
     piece: "queen",
-    label: "THE QUEEN",
     title: "Researcher",
     body: "11 published articles and a full technical report spanning neuroscience, signal processing, ML, hardware, and the ethics of biometric interfaces.",
     tags: ["11 articles", "Technical report", "Open access"],
   },
   {
     piece: "rook",
-    label: "THE ROOK",
     title: "Fairly AI",
     body: "AI QA Intern. Designed 1,000+ test cases, reduced evaluation workflow by 60%, and led benchmarking across 12+ scenarios over 15 refinement cycles.",
     tags: ["AI QA", "Benchmarking", "Co-op · 2025–2026"],
   },
   {
     piece: "bishop",
-    label: "THE BISHOP",
     title: "Full Stack",
     body: "From raw EMG signal to interactive web demo — React frontend, FastAPI backend, Three.js visualisations, deployed on Vercel and Render.",
     tags: ["React", "FastAPI", "Three.js", "Canvas API", "PyQt6"],
   },
   {
     piece: "knight",
-    label: "THE KNIGHT",
     title: "16 & Building",
     body: "Bur Oak Secondary School, Markham. Designing Python curriculum for elementary students. Moving in directions others don't expect.",
     tags: ["16 years old", "Toronto", "ELEVATE competition"],
   },
   {
     piece: "pawn",
-    label: "THE PAWN",
     title: "The Origin",
     body: "September 2024 — no hardware, no lab, no funding. Just public data, curiosity, and a relentless need to build something that mattered.",
     tags: ["Sept 2024", "Self-taught", "From scratch"],
@@ -148,22 +142,44 @@ export default function ChessLazySusan() {
   const progressRef  = useRef(0)   // float 0 → N-1, read in RAF
   const [activeIdx, setActiveIdx] = useState(0)
 
-  // ── Scroll tracker (writes progressRef + activeIdx)
+  // ── Scroll tracker + snap-to-piece
   useEffect(() => {
+    let snapTimer = null
+    let isSnapping = false
+
     const onScroll = () => {
       const el = containerRef.current
       if (!el) return
-      const rect    = el.getBoundingClientRect()
+
+      const rect     = el.getBoundingClientRect()
       const scrolled = -rect.top
       const total    = rect.height - window.innerHeight
       const norm     = Math.max(0, Math.min(1, scrolled / total))
       const prog     = norm * (N - 1)
       progressRef.current = prog
       setActiveIdx(Math.round(prog))
+
+      // Debounce: snap to nearest piece 120ms after scrolling stops
+      if (snapTimer) clearTimeout(snapTimer)
+      snapTimer = setTimeout(() => {
+        if (isSnapping) return
+        const nearest = Math.round(progressRef.current)
+        const containerTop = el.getBoundingClientRect().top + window.scrollY
+        const targetScrollY = containerTop + (nearest / (N - 1)) * total
+        if (Math.abs(window.scrollY - targetScrollY) > 4) {
+          isSnapping = true
+          window.scrollTo({ top: targetScrollY, behavior: "smooth" })
+          setTimeout(() => { isSnapping = false }, 600)
+        }
+      }, 120)
     }
+
     window.addEventListener("scroll", onScroll, { passive: true })
     onScroll()
-    return () => window.removeEventListener("scroll", onScroll)
+    return () => {
+      window.removeEventListener("scroll", onScroll)
+      if (snapTimer) clearTimeout(snapTimer)
+    }
   }, [])
 
   // ── Three.js
@@ -409,15 +425,6 @@ export default function ChessLazySusan() {
 
         {/* ── Info panel (right) */}
         <div style={{ flex: "0 0 42%", padding: "0 56px 0 0" }}>
-
-          {/* Piece label */}
-          <div style={{
-            fontSize: 10, color: "rgba(245,158,11,0.45)",
-            textTransform: "uppercase", letterSpacing: "0.32em",
-            marginBottom: 18, fontFamily: "var(--serif)",
-          }}>
-            {slide.label}
-          </div>
 
           {/* Title — keyed so it re-animates on change */}
           <div
