@@ -100,7 +100,7 @@ export default function Home() {
         {[
           { val:"6+", label:"Months of internship experience" },
           { val:7,    label:"Positions" },
-          { val:4,    label:"Projects" },
+          { val:5,    label:"Projects" },
         ].map((s, i) => (
           <Reveal key={i} delay={i * 0.08}>
             <div style={{ padding:"44px 48px", borderRight: i < 2 ? "1px solid var(--border)" : "none" }}>

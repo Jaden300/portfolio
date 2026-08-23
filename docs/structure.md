@@ -60,7 +60,7 @@ Portfolio/
 - Critters: Bear (top left), Owl (top right), Penguin (lower left) in Work Stack section
 
 ### Work.jsx (Projects)
-- 4 projects: MyMurry, Quant-Trading, myojam, Machine Learning Series
+- 5 projects: MyMurry, Quant-Trading, myojam, Pip, Machine Learning Series
 - Each has image stack, bullets, metrics, tags
 - Critters: Cat (top left), Frog (right), Panda (lower left), Dog (lower right)
 - Note: Sheep critter was removed - its .puff divs rendered as white circles (bug)
