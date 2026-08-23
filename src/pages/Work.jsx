@@ -50,7 +50,6 @@ const PROJECTS = [
     logo: "/logos/mymurry.png",
     year: "2026 - present",
     url: "https://mymurry.com",
-    github: "https://github.com/Jaden300/MyMurry",
     accent: "#A855F7",
     summary: "Built the active recall loop end-to-end: users upload notes, GPT-4o sections them into key concepts, then users recall everything they remember and get scored 0-100 with a breakdown of what they missed.",
     bullets: [
