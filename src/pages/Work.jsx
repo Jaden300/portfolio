@@ -51,7 +51,6 @@ const PROJECTS = [
     year: "2026 - present",
     url: "https://mymurry.com",
     accent: "#A855F7",
-    summary: "Built the active recall loop end-to-end: users upload notes, GPT-4o sections them into key concepts, then users recall everything they remember and get scored 0-100 with a breakdown of what they missed.",
     bullets: [
       "Designed and built 21+ REST endpoints across Next.js App Router: note CRUD, AI analysis sessions, Google Calendar and Tasks proxy, TOTP MFA recovery, and public browse",
       "Modelled 9 PostgreSQL tables via Prisma ORM. Implemented Supabase auth with Google OAuth 2.0, silent token refresh, and SHA-256-hashed 2FA recovery codes",
@@ -59,7 +58,6 @@ const PROJECTS = [
       "Integrated GPT-4o for section generation and recall scoring - each session produces a point-by-point coverage breakdown showing exactly what concepts were missed",
     ],
     metrics: [["21+", "API endpoints"], ["9", "DB models"], ["700+", "i18n strings"], ["MFA", "2-factor auth"]],
-    tags: ["Next.js 15", "React 19", "TypeScript", "PostgreSQL", "Prisma", "GPT-4o", "Supabase", "Vercel"],
     images: ["/work/mymurry-1.jpg", "/work/mymurry-2.jpg", "/work/mymurry-3.jpg"],
   },
   {
@@ -68,7 +66,6 @@ const PROJECTS = [
     url: "https://github.com/Jaden300/Quant-Trading",
     github: "https://github.com/Jaden300/Quant-Trading",
     accent: "#10B981",
-    summary: "Built a backtesting engine, a grid-search parameter optimizer, and a custom scoring formula. Ran each strategy across 10 large-cap tickers, then promoted the best performers to a live scanner.",
     bullets: [
       "Wrote a bar-by-bar backtesting engine from scratch and a multi-parameter optimizer that runs ~2,140 combinations per strategy across a 5.3-year daily bar history",
       "Designed a custom scoring formula: mean_sharpe - 0.5×std_sharpe + 4×(win_rate/100) - specifically penalizes strategies that are inconsistent across tickers, not just low Sharpe",
@@ -76,7 +73,6 @@ const PROJECTS = [
       "Wrote a live S&P 500 scanner that downloads OHLCV history for ~491 tickers and outputs ranked signals by confidence score in real time",
     ],
     metrics: [["23", "Strategies"], ["5", "Live"], ["~2,140", "Param combos"], ["491", "Tickers"]],
-    tags: ["Python", "NumPy", "pandas", "yfinance", "scikit-learn", "Pine Script v6"],
     images: ["/work/quant-1.jpg", "/work/quant-2.jpg"],
   },
   {
@@ -86,7 +82,6 @@ const PROJECTS = [
     url: "https://myojam.com",
     github: "https://github.com/Jaden300/myojam",
     accent: "#f5e040",
-    summary: "Built a full signal pipeline from scratch: Arduino sensors, Butterworth bandpass filtering, 64-feature extraction, and a Random Forest classifier. Deployed as a full-stack web platform with interactive demos - no hardware required.",
     bullets: [
       "Designed the feature extraction stage: 64 features per window (MAV, RMS, Zero Crossing, Waveform Length) across 16 EMG channels, then trained and evaluated using Leave-One-Subject-Out cross-validation",
       "Built the inference layer as a FastAPI service with sub-5ms response time, consumed by a React frontend with 8 interactive browser demos including a signal playground and Scratch-like block-coding interface",
@@ -94,7 +89,6 @@ const PROJECTS = [
       "Published 11 educational articles, 3 lesson plans, and launched ELEVATE - an international EMG innovation competition",
     ],
     metrics: [["84.85%", "Cross-subject acc"], ["8", "Browser demos"], ["11", "Articles"], ["<5ms", "Inference"]],
-    tags: ["Python", "React", "FastAPI", "scikit-learn", "PyQt6", "Three.js", "Arduino"],
     images: ["/work/myojam-1.jpg", "/work/myojam-2.jpg", "/work/myojam-3.jpg"],
   },
   {
@@ -104,14 +98,13 @@ const PROJECTS = [
     url: "https://github.com/Jaden300/Verdant",
     github: "https://github.com/Jaden300/Verdant",
     accent: "#22C55E",
-    summary: "Built a full-stack garden simulator that turns a natural-language garden description into an explorable 3D world with a live care engine - LLM extracts a structured plant list, World Labs Marble generates the scene, and a server-side growth model drives what the plants actually do.",
+    badge: "2nd Best Use of Base44 out of 87 Teams - Ignition Hacks",
     bullets: [
       "Engineered a soil/fertilizer/weather growth model as four independent factors - texture, pH, nutrients (Mitscherlich diminishing returns under Liebig's law of the minimum), and weather (cardinal-temperature response plus a millimetre-accurate water balance) - multiplied and clamped, warping elapsed growing time to keep growth monotonic",
       "Built a forward simulation engine reusing the live garden's hydration logic, running up to 120 Monte Carlo trials over a 365-day horizon and summarizing them as p10/p50/p90 uncertainty bands",
       "Built a custom weather generator - real 7-day forecast, then a two-state Markov chain for rain and a lag-1 autoregressive anomaly for temperature - verified within 0.02°C and 2% of source climate across 300 generated years",
     ],
     metrics: [["120", "Monte Carlo trials"], ["73", "Crop database"], ["7", "Biome classes"], ["0.02°C", "Weather accuracy"]],
-    tags: ["React 19", "Vite 7", "TypeScript", "Node", "Express 5", "World Labs Marble", "three.js", "OpenAI/Anthropic"],
     images: ["/work/pip-1.png", "/work/pip-2.png", "/work/pip-3.png"],
   },
   {
@@ -120,14 +113,12 @@ const PROJECTS = [
     url: "https://github.com/Jaden300/Machine-Learning-Series",
     github: "https://github.com/Jaden300/Machine-Learning-Series",
     accent: "#F97316",
-    summary: "4 end-to-end ML notebooks (614 cells, 28,482 lines) across EDA, Classification, Regression, and Unsupervised Learning on real-world Kaggle datasets.",
     bullets: [
       "Benchmarked 10+ classifiers on a 2,000-sample mobile price dataset - stacked ensemble (SVC + KNN + Decision Tree → LR meta-learner) hit 97.0% vs 95.3% best single model",
       "Tuned regression via GridSearchCV (Lasso, Ridge, polynomial degrees) achieving R² = 0.9893; built a 3-layer interpretability pipeline: permutation importance, global surrogate (82.8% fidelity), and LIME",
       "Applied PCA, KernelPCA, t-SNE, DBSCAN, and KMeans across Spotify and Sign Language MNIST; image segmentation via KMeans, GMM, and MeanShift",
     ],
     metrics: [["97.0%", "Ensemble acc"], ["R² 0.989", "Regression"], ["614", "Notebook cells"], ["10+", "Algorithms"]],
-    tags: ["Python", "Jupyter", "scikit-learn", "XGBoost", "LIME", "statsmodels", "OpenCV", "pandas", "NumPy"],
     images: ["/work/ml-1.jpg", "/work/ml-2.jpg", "/work/ml-3.jpg"],
   },
 ]
@@ -174,15 +165,16 @@ export default function Work() {
 
                     {/* Left: content */}
                     <div style={{ minWidth: 0 }}>
-                      <div style={{ display:"flex", gap:10, marginBottom:12, alignItems:"center" }}>
+                      <div style={{ display:"flex", gap:10, marginBottom:12, alignItems:"center", flexWrap:"wrap" }}>
                         <span style={{ fontSize:11, color:"var(--text-tertiary)", border:"1px solid var(--border)", borderRadius:100, padding:"3px 12px", fontWeight:300 }}>{p.year}</span>
+                        {p.badge && (
+                          <span style={{ fontSize:11, color:"#3a2a05", background:"linear-gradient(135deg, #ffe28a, #d4a017)", border:"1px solid #f5c542", borderRadius:100, padding:"3px 12px", fontWeight:700, boxShadow:"0 0 12px rgba(245,197,66,0.35)" }}>{p.badge}</span>
+                        )}
                       </div>
                       <div style={{ display:"flex", alignItems:"center", gap:12, marginBottom:12 }}>
                         {p.logo && <img src={p.logo} alt="" style={{ width:36, height:36, objectFit:"contain", borderRadius:6, flexShrink:0 }} />}
                         <h2 style={{ fontFamily:"var(--serif)", fontSize:"clamp(28px,3.5vw,40px)", fontWeight:700, color:"var(--text)", letterSpacing:"-1px", margin:0 }}>{p.name}</h2>
                       </div>
-                      <p style={{ fontSize:15, color:"var(--text-secondary)", lineHeight:1.8, fontWeight:300, marginBottom:28, maxWidth:520 }}>{p.summary}</p>
-
                       <div style={{ display:"flex", flexDirection:"column", gap:10, marginBottom:28 }}>
                         {p.bullets.map((b, j) => (
                           <div key={j} style={{ display:"flex", gap:14, alignItems:"flex-start" }}>
@@ -198,12 +190,6 @@ export default function Work() {
                             <div style={{ fontSize:16, fontWeight:800, color:p.accent, fontFamily:"var(--serif)", letterSpacing:"-0.5px", marginBottom:2 }}>{v}</div>
                             <div style={{ fontSize:10, color:"var(--text-tertiary)", textTransform:"uppercase", letterSpacing:"0.06em" }}>{l}</div>
                           </div>
-                        ))}
-                      </div>
-
-                      <div style={{ display:"flex", flexWrap:"wrap", gap:6, marginBottom:24 }}>
-                        {p.tags.map(t => (
-                          <span key={t} style={{ fontSize:11, color:"var(--text-tertiary)", border:"1px solid var(--border)", borderRadius:100, padding:"3px 12px", fontWeight:300 }}>{t}</span>
                         ))}
                       </div>
 

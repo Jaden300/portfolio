@@ -84,7 +84,7 @@ export default function Home() {
               Currently volunteering as SWE at <strong style={{ color:"var(--text)", fontWeight:500 }}>One Community</strong> and website manager at <strong style={{ color:"var(--text)", fontWeight:500 }}>The Volunteer Well</strong>. Previously AI intern at <strong style={{ color:"var(--text)", fontWeight:500 }}>Asenion</strong> and co-founder of <strong style={{ color:"var(--text)", fontWeight:500 }}>myojam</strong> - open-source EMG gesture classification, no lab, no funding.
             </p>
             <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(108px,1fr))", gap:10, marginTop:44 }}>
-              {["Python","React","Next.js","TypeScript","FastAPI","PostgreSQL","Prisma","Supabase","GPT-4o","scikit-learn","PyQt6","Three.js","Signal Processing","NumPy","Pine Script v6","Puppeteer"].map(chip => (
+              {["Python","React","Next.js","TypeScript","FastAPI","PostgreSQL","Prisma","Supabase","GPT-4o","scikit-learn","PyQt6","Three.js","Signal Processing","NumPy","Pine Script v6","Puppeteer","Tailwind CSS","Zustand","REST APIs","Git"].map(chip => (
                 <div key={chip} style={{ display:"flex", alignItems:"center", justifyContent:"center", fontSize:11, fontWeight:500, letterSpacing:"0.14em", color:"var(--text-tertiary)", border:"1px solid var(--border)", borderRadius:4, padding:"10px 8px", transition:"border-color 0.2s, color 0.2s", textAlign:"center", cursor:"default" }}
                   onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(245,224,64,0.5)"; e.currentTarget.style.color = "var(--text)" }}
                   onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--text-tertiary)" }}
