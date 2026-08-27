@@ -15,9 +15,6 @@ const CERTS = [
   { name:"Google AI Professional Certificate",                  issuer:"Google", date:"Apr 2026", logo:"/logos/google.png" },
 ]
 
-const COMPETITIONS = [
-  { name:"2nd Best Use of Base44", issuer:"Ignition Hacks", date:"Aug 2026", logo:"/logos/ignitionhacks.png" },
-]
 
 export default function About() {
   const navigate = useNavigate()
@@ -113,22 +110,6 @@ export default function About() {
                   <div>
                     <div style={{ fontSize:13, fontWeight:600, color:"var(--text)", lineHeight:1.4, marginBottom:8 }}>{cert.name}</div>
                     <div style={{ fontSize:11, color:"var(--text-tertiary)", fontWeight:300 }}>{cert.issuer} • {cert.date}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-
-          {/* Competitions */}
-          <Reveal delay={0.2}>
-            <div style={{ fontSize:10, color:"var(--text-tertiary)", textTransform:"uppercase", letterSpacing:"0.18em", margin:"36px 0 20px" }}>Competitions</div>
-            <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:12 }}>
-              {COMPETITIONS.map(comp => (
-                <div key={comp.name} style={{ background:"var(--bg-2)", border:"1px solid var(--border)", borderRadius:16, padding:"28px 24px", display:"flex", flexDirection:"column", gap:16 }}>
-                  <img src={comp.logo} alt={comp.issuer} style={{ width:40, height:40, objectFit:"contain", background:"white", borderRadius:6, padding:5 }} />
-                  <div>
-                    <div style={{ fontSize:13, fontWeight:600, color:"var(--text)", lineHeight:1.4, marginBottom:8 }}>{comp.name}</div>
-                    <div style={{ fontSize:11, color:"var(--text-tertiary)", fontWeight:300 }}>{comp.issuer} • {comp.date}</div>
                   </div>
                 </div>
               ))}

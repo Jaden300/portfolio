@@ -92,22 +92,6 @@ const PROJECTS = [
     images: ["/work/myojam-1.jpg", "/work/myojam-2.jpg", "/work/myojam-3.jpg"],
   },
   {
-    name: "Pip",
-    logo: "/work/pip.png",
-    year: "2026",
-    url: "https://github.com/Jaden300/Verdant",
-    github: "https://github.com/Jaden300/Verdant",
-    accent: "#22C55E",
-    badge: "2nd Best Use of Base44 out of 87 Teams - Ignition Hacks",
-    bullets: [
-      "Engineered a soil/fertilizer/weather growth model as four independent factors - texture, pH, nutrients (Mitscherlich diminishing returns under Liebig's law of the minimum), and weather (cardinal-temperature response plus a millimetre-accurate water balance) - multiplied and clamped, warping elapsed growing time to keep growth monotonic",
-      "Built a forward simulation engine reusing the live garden's hydration logic, running up to 120 Monte Carlo trials over a 365-day horizon and summarizing them as p10/p50/p90 uncertainty bands",
-      "Built a custom weather generator - real 7-day forecast, then a two-state Markov chain for rain and a lag-1 autoregressive anomaly for temperature - verified within 0.02°C and 2% of source climate across 300 generated years",
-    ],
-    metrics: [["120", "Monte Carlo trials"], ["73", "Crop database"], ["7", "Biome classes"], ["0.02°C", "Weather accuracy"]],
-    images: ["/work/pip-1.png", "/work/pip-2.png", "/work/pip-3.png"],
-  },
-  {
     name: "Machine Learning Series",
     year: "2024 - 2025",
     url: "https://github.com/Jaden300/Machine-Learning-Series",
